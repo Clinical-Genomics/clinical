@@ -22,9 +22,9 @@ def readconfig( config ):
   return params
 
 def dbconnect( Host, Port, Db, User, Passwd): 
-  cnx = mysql.connect(user=User, port=Port, host=Host, passwd=Passwd, db=Db)
-  cursor = cnx.cursor()
-  return cnx, cursor
+  Cnx = mysql.connect(user=User, port=Port, host=Host, passwd=Passwd, db=Db)
+  Cursor = cnx.cursor()
+  return Cnx, Cursor
 
 def dbclose( Cnx, Cursor):
   Cursor.close()
