@@ -28,7 +28,7 @@ ssh_process = subprocess.Popen(cmnd,
 #    print >>sys.stderr, "ERROR: %s" % error
 #else:
 #    print result
-#print str(ssh.pid)
+print str(ssh_process.pid)
 
 while True:
   p = ssh_process.poll()
