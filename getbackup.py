@@ -17,6 +17,7 @@ print pars['CLINICALDBUSER']
 cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
 
+_VERSION_ = pars['DBVERSION']
 cursor.execute(""" SELECT major, minor, patch FROM version ORDER BY time DESC LIMIT 1 """)
 row = cursor.fetchone()
 if row is not None:
