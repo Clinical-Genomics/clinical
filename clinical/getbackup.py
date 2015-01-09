@@ -35,6 +35,21 @@ while True:
   if p is not None: break
   time.sleep(1)
 
+if p == 0:
+        # Unfortunately there is no direct way to get the pid of the spawned ssh process, so we'll find it
+        # by finding a matching process using psutil.
+ 
+  current_username = psutil.Process(os.getpid()).username
+  ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline == cmnd.split() and proc.username == current_username]
+ 
+  if len(ssh_processes) == 1:
+    print ssh_processes[0]
+  else:
+    raise RuntimeError, 'multiple (or zero?) tunnel ssh processes found: ' + str(ssh_processes) 
+else:
+  raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
+
+
 
 pars = readconfig('hej')
 print pars['CLINICALDBUSER']
