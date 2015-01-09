@@ -10,6 +10,7 @@ import socket
 import os
 import select
 import psutil
+import subprocess
 
 def readconfig( config ):
   Configfile = "/home/hiseq.clinical/.scilifelabrc"
