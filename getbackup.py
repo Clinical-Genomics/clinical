@@ -12,6 +12,6 @@ import select
 import clinicaldb
 
 pars = readconfig()
-print pars[''CLINICALDBUSER']
+print pars['CLINICALDBUSER']
 
 exit(0)
