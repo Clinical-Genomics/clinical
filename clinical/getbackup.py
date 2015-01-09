@@ -82,7 +82,7 @@ else:
 dbclose(cnx, cursor)
 
 p = ssh_process.poll()
-print str(p)
+print str(p), ssh_process_id
 ssh_process_id.terminate()
 
 exit(0)
