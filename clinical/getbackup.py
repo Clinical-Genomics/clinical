@@ -11,6 +11,7 @@ import os
 import select
 from dbaccess import *
 import subprocess
+import psutil
 
 # ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se
 cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical-db.scilifelab.se']
