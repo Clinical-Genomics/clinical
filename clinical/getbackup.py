@@ -41,8 +41,8 @@ if p == 0:
         # by finding a matching process using psutil.
  
   current_username = psutil.Process(os.getpid()).username
-  ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline == cmnd and proc.username == current_username]
-  for pc in psutil.get_process_list():
+  ssh_processes = [proc for proc in psutil.get_process_list() if proc.username == current_username]
+  for pc in ssh_processes:
     print str(pc)
  
   if len(ssh_processes) == 1:
