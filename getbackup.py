@@ -27,9 +27,9 @@ if row is not None:
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
-  print params['STATSDB'] + " Correct database version "+str(_VERSION_)+"   DB "+params['STATSDB']
+  print pars['STATSDB'] + " Correct database version "+str(_VERSION_)+"   DB "+pars['STATSDB']
 else:
-  exit (params['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
+  exit (pars['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
          +str(major)+"."+str(minor)+"."+str(patch))
 
 dbclose(cnx, cursor)
