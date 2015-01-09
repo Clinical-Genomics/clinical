@@ -9,9 +9,9 @@ import re
 import socket
 import os
 import select
-import dbaccess
+from dbaccess import *
 
-pars = dbaccess.readconfig('hej')
+pars = readconfig('hej')
 print pars['CLINICALDBUSER']
 
 exit(0)
