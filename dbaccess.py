@@ -11,14 +11,14 @@ import os
 import select
 
 def readconfig( config ):
-  configfile = "/home/hiseq.clinical/.scilifelabrc"
-  params = {}
-  with open(configfile, "r") as confs:
-    for line in confs:
+  Configfile = "/home/hiseq.clinical/.scilifelabrc"
+  Params = {}
+  with open(Configfile, "r") as Confs:
+    for line in Confs:
       if len(line) > 5 and not line[0] == "#":
         line = line.rstrip()
         pv = line.split(" ")
-        params[pv[0]] = pv[1]
+        Params[pv[0]] = pv[1]
   return params
 
 def dbconnect( Host, Port, Db, User, Passwd): 
