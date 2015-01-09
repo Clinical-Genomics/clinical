@@ -30,7 +30,7 @@ ssh = subprocess.Popen(cmnd,
 #    print >>sys.stderr, "ERROR: %s" % error
 #else:
 #    print result
-
+print str(ssh.pid)
 
 pars = readconfig('hej')
 print pars['CLINICALDBUSER']
