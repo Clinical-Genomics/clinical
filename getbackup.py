@@ -9,7 +9,7 @@ import re
 import socket
 import os
 import select
-import clinicaldb
+import dbaccess
 
 pars = readconfig()
 print pars['CLINICALDBUSER']
