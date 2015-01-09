@@ -19,7 +19,7 @@ def readconfig( config ):
         line = line.rstrip()
         pv = line.split(" ")
         Params[pv[0]] = pv[1]
-  return params
+  return Params
 
 def dbconnect( Host, Port, Db, User, Passwd): 
   Cnx = mysql.connect(user=User, port=Port, host=Host, passwd=Passwd, db=Db)
