@@ -16,7 +16,7 @@ import subprocess
 cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical-db.scilifelab.se']
 # ["ssh", "%s" % HOST, COMMAND]
 
-ssh = subprocess.Popen(cmnd,
+ssh_process = subprocess.Popen(cmnd,
                        shell=False
  #                      stdin=subprocess.PIPE,
  #                      stdout=subprocess.PIPE,
@@ -28,7 +28,7 @@ ssh = subprocess.Popen(cmnd,
 #    print >>sys.stderr, "ERROR: %s" % error
 #else:
 #    print result
-print str(ssh.pid)
+#print str(ssh.pid)
 
 while True:
   p = ssh_process.poll()
@@ -61,6 +61,6 @@ else:
 
 dbclose(cnx, cursor)
 
-ssh.kill()
+ssh_process.kill()
 
 exit(0)
