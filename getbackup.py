@@ -37,8 +37,10 @@ print str(ssh.pid)
 pars = readconfig('hej')
 print pars['CLINICALDBUSER']
 
-cnx, cursor = ssh.communicate(dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
+stdout, stderr = ssh.communicate(dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD']))
+
+print stdout, stderr
 
 _VERSION_ = pars['DBVERSION']
 cursor.execute(""" SELECT major, minor, patch FROM version ORDER BY time DESC LIMIT 1 """)
