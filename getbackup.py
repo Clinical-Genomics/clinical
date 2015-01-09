@@ -24,12 +24,12 @@ ssh = subprocess.Popen(cmnd,
                        shell=False,
                        stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE)
-result = ssh.stdout.readlines()
-if result == []:
-    error = ssh.stderr.readlines()
-    print >>sys.stderr, "ERROR: %s" % error
-else:
-    print result
+#result = ssh.stdout.readlines()
+#if result == []:
+#    error = ssh.stderr.readlines()
+#    print >>sys.stderr, "ERROR: %s" % error
+#else:
+#    print result
 
 
 pars = readconfig('hej')
