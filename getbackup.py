@@ -21,7 +21,7 @@ cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical
 # ["ssh", "%s" % HOST, COMMAND]
 
 ssh = subprocess.Popen(cmnd,
-                       shell=False
+                       shell=False,
                        stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE
                        )
