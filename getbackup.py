@@ -11,7 +11,7 @@ import os
 import select
 import dbaccess
 
-pars = dbaccess.readconfig()
+pars = dbaccess.readconfig('hej')
 print pars['CLINICALDBUSER']
 
 exit(0)
