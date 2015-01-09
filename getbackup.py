@@ -16,7 +16,11 @@ HOST="clinical-db.scilifelab.se"
 # Ports are handled in ~/.ssh/config since we use OpenSSH
 COMMAND="uname -a"
  
-ssh = subprocess.Popen(["ssh", "%s" % HOST, COMMAND],
+# ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se
+cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical-db.scilifelab.se']
+# ["ssh", "%s" % HOST, COMMAND]
+
+ssh = subprocess.Popen(cmnd,
                        shell=False,
                        stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE)
