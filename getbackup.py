@@ -22,8 +22,8 @@ cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical
 
 ssh = subprocess.Popen(cmnd,
                        shell=False
-#                       stdout=subprocess.PIPE,
-#                       stderr=subprocess.PIPE
+                       stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE
                        )
 #result = ssh.stdout.readlines()
 #if result == []:
@@ -55,5 +55,7 @@ else:
          +str(major)+"."+str(minor)+"."+str(patch))
 
 dbclose(cnx, cursor)
+
+ssh.kill()
 
 exit(0)
