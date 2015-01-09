@@ -61,6 +61,8 @@ else:
 
 dbclose(cnx, cursor)
 
+p = ssh_process.poll()
+print str(p)
 ssh_process.terminate()
 
 exit(0)
