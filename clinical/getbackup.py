@@ -12,10 +12,6 @@ import select
 from dbaccess import *
 import subprocess
 
-HOST="clinical-db.scilifelab.se"
-# Ports are handled in ~/.ssh/config since we use OpenSSH
-COMMAND="uname -a"
- 
 # ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se
 cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical-db.scilifelab.se']
 # ["ssh", "%s" % HOST, COMMAND]
