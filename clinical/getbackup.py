@@ -38,12 +38,12 @@ while True:
 
 if p == 0:
         # Unfortunately there is no direct way to get the pid of the spawned ssh process, so we'll find it
-        # by finding a matching process using psutil.
+        # by finding a matching process using psutil.    proc.cmdline == tunnel_cmd.split() and 
  
   current_username = psutil.Process(os.getpid()).username
   ssh_processes = [proc for proc in psutil.get_process_list() if proc.username == current_username]
   for pc in ssh_processes:
-    print str(pc)
+    print str(pc.cmdline)
  
   if len(ssh_processes) == 1:
     print ssh_processes[0]
