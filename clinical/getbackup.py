@@ -61,6 +61,6 @@ else:
 
 dbclose(cnx, cursor)
 
-ssh_process.kill()
+ssh_process.terminate()
 
 exit(0)
