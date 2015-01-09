@@ -34,6 +34,12 @@ ssh = subprocess.Popen(cmnd,
 #    print result
 print str(ssh.pid)
 
+while True:
+  p = ssh_process.poll()
+  if p is not None: break
+  time.sleep(1)
+
+
 pars = readconfig('hej')
 print pars['CLINICALDBUSER']
 
