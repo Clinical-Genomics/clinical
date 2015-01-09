@@ -15,6 +15,8 @@ import psutil
 
 # ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se
 cmnd = ['ssh', '-f', '-N', '-L', '3307:localhost:3306', 'hiseq.clinical@clinical-db.scilifelab.se']
+
+
 # ["ssh", "%s" % HOST, COMMAND]
 
 ssh_process = subprocess.Popen(cmnd,
@@ -52,7 +54,7 @@ if p == 0:
 else:
   raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
 
-
+ssh_process_id = subprocess.Popen("ps aux | grep 'ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se' | grep -v grep | awk '{print $2}'", shell=False)
 
 pars = readconfig('hej')
 print pars['CLINICALDBUSER']
@@ -81,6 +83,6 @@ dbclose(cnx, cursor)
 
 p = ssh_process.poll()
 print str(p)
-ssh_process.terminate()
+ssh_process_id.terminate()
 
 exit(0)
