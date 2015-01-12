@@ -88,11 +88,10 @@ def insertorupdate( cursor, table, column, entry, arrayinsert ):
   cursor.execute(""" show index from backup """)
   indexkey = cursor.fetchone()
   print indexkey['Column_name']
-  if not cursor.fetchone():
+  if not indexkey:
     return "Could not get primary key"
   else:
-    indexkey = cursor.fetchone()
-  print "1", str(indexkey), "2"
+    print "1", str(indexkey), "2"
   exit (0)
   
   cursor.execute(""" SELECT %s FROM %s WHERE %s = %s """, 
