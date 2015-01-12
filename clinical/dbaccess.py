@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import errno
 import sys
-import MySQLdb as mysql
+import MySQLCursorDict as mysql
 import time
 import glob
 import re
