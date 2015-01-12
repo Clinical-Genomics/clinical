@@ -84,12 +84,14 @@ def generalquery( cursor, query ):
   return respons 
   
 def insertorupdate( cursor, table, column, entry, arrayinsert ):
-  cursor.execute(""" show index from backup """)
+  cursor.execute(""" show index from %s """, (table, ))
   if not cursor.fetchone():
     return "Could not get primary key"
   else:
     indexkey = cursor.fetchone()
   print str(indexkey)
+  exit (0)
+  
   cursor.execute(""" SELECT %s FROM %s WHERE %s = %s """, 
               (indexkey['Column_name'], table, entry, ))
   if not cursor.fetchone():
@@ -97,7 +99,6 @@ def insertorupdate( cursor, table, column, entry, arrayinsert ):
   else:
     hit = cursor.fetchone()
   print hit[indexkey['Column_name']], indexkey['Column_name']
-  exit (0)
   
 
 
