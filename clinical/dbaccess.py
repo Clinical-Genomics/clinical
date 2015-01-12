@@ -23,7 +23,7 @@ def readconfig( config ):
         pv = line.split(" ")
         if len(pv) > 1:
           arg = pv[0]
-          pv.pop(1)
+          pv.pop(0)
           Params[arg] = ' '.join(pv)
         else:
           Params[pv[0]] = pv[1]
