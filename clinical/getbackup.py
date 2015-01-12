@@ -2,7 +2,7 @@
 #
 #
 import sys
-import MySQLdb as mysql
+#import MySQLdb as mysql
 import time
 import glob
 import re
@@ -26,7 +26,6 @@ cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['ST
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
 
 cmd = """ SELECT major, minor, patch FROM version ORDER BY time DESC LIMIT 1 """
-
 _VERSION_ = pars['DBVERSION']
 cursor.execute(cmd)
 row = cursor.fetchone()
@@ -38,15 +37,10 @@ if row is not None:
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
-  print pars['STATSDB'] + " Correct database version "+str(_VERSION_)+"   DB "+pars['STATSDB']
+  print " Correct database version "+str(_VERSION_)+"      DB "+pars['STATSDB']
 else:
   exit (pars['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
          +str(major)+"."+str(minor)+"."+str(patch))
-
-cmd2 = """ SELECT major, minor, patch FROM version ORDER BY time """
-results = generalquery(cursor, cmd2)
-for rs in results:
-  print rs['major']
 
 dbclose(cnx, cursor)
 
