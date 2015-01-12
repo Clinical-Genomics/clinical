@@ -99,30 +99,6 @@ def insertorupdate( cursor, table, column, entry, arrayinsert ):
   print hit[indexkey.Column_name], indexkey.Column_name
   exit (0)
   
-  try:
-    cursor.execute(""" INSERT INTO `supportparams` (document_path, systempid, systemos, systemperlv, systemperlexe, 
-                      idstring, program, commandline, sampleconfig_path, sampleconfig, time) VALUES (%s, %s, %s, %s, 
-                      %s, %s, %s, %s, %s, %s, %s) """, (basedir+"Unaligned/support.txt", Systempid, Systemos, 
-                      Systemperlv, Systemperlexe, Idstring, Program, commandline, samplesheet, SampleSheet, now, ))
-  except mysql.IntegrityError, e: 
-    print "Error %d: %s" % (e.args[0],e.args[1])
-    exit("DB error")
-# handle a specific error condition
-  except mysql.Error, e:
-    print "Error %d: %s" % (e.args[0],e.args[1])
-    exit("Syntax error")
-# handle a generic error condition
-  except mysql.Warning, e:
-    exit("MySQL warning")
-# handle warnings, if the cursor you're using raises them
-  cnx.commit()
-  print "Support parameters from "+basedir+"Unaligned/support.txt now added to DB with supportparams_id: "+str(cursor.lastrowid)
-  supportparamsid = cursor.lastrowid
-else:
-  cursor.execute(""" SELECT supportparams_id FROM supportparams WHERE document_path = %s """, 
-                     (basedir+"Unaligned/support.txt", ))
-  supportparamsid = cursor.fetchone()[0]
-  print "Support "+basedir+"Unaligned/support.txt"+" exists in DB with supportparams_id: "+str(supportparamsid)
 
 
   
