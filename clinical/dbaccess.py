@@ -54,7 +54,7 @@ def create_tunnel(tunnel_cmd):
  
         current_username = psutil.Process(os.getpid()).username
         ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline == tunnel_cmd.split() and proc.username == current_username]
- 
+        print current_username
         if len(ssh_processes) == 1:
             return ssh_processes[0]
         else:
