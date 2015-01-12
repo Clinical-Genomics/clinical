@@ -27,7 +27,6 @@ def readconfig( config ):
           Params[arg] = ' '.join(pv)
         else:
           Params[pv[0]] = pv[1]
-        
   return Params
 
 def create_tunnel(tunnel_cmd):
