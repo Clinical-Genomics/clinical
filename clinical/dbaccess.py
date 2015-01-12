@@ -3,6 +3,7 @@
 import errno
 import sys
 import MySQLdb as mysql
+import MySQLdb.cursors
 import time
 import glob
 import re
