@@ -24,10 +24,10 @@ print pars['CLINICALDBUSER']
 cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
 
-
+cmd = """ SELECT major, minor, patch FROM version ORDER BY time DESC LIMIT 1 """
 
 _VERSION_ = pars['DBVERSION']
-cursor.execute(""" SELECT major, minor, patch FROM version ORDER BY time DESC LIMIT 1 """)
+cursor.execute(cmd)
 row = cursor.fetchone()
 if row is not None:
   major = row[0]
@@ -40,6 +40,11 @@ if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
 else:
   exit (pars['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
          +str(major)+"."+str(minor)+"."+str(patch))
+
+cmd2 = """ SELECT major, minor, patch FROM version ORDER BY time """
+results = generalquery(cursor, cmd2)
+for res in results:
+  print str(res)
 
 dbclose(cnx, cursor)
 
