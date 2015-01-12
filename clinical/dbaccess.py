@@ -91,12 +91,12 @@ def insertorupdate( cursor, table, column, entry, arrayinsert ):
     indexkey = cursor.fetchone()
   
   cursor.execute(""" SELECT %s FROM %s WHERE %s = %s """, 
-              (indexkey.Column_name, table, entry, ))
+              (indexkey['Column_name'], table, entry, ))
   if not cursor.fetchone():
     print "Support parameters not yet added"
   else:
     hit = cursor.fetchone()
-  print hit[indexkey.Column_name], indexkey.Column_name
+  print hit[indexkey['Column_name']], indexkey['Column_name']
   exit (0)
   
 
