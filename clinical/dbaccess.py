@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import errno
 import sys
-import MySQLCursorDict as mysql
+import MySQLdb as mysql
 import time
 import glob
 import re
@@ -47,7 +47,7 @@ def create_tunnel(tunnel_cmd):
   else:
     raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
 
-def dbconnect( Host, Port, Db, User, Passwd): 
+def dbconnect( Host, Port, Db, User, Passwd, cursorclass=MySQLdb.cursors.DictCursor): 
   Cnx = mysql.connect(user=User, port=int(Port), host=Host, passwd=Passwd, db=Db)
   Cursor = Cnx.cursor()
   return Cnx, Cursor
