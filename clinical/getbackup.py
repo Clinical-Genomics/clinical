@@ -33,7 +33,7 @@ if row is not None:
   major = int(row['major'])
   minor = int(row['minor'])
   patch = int(row['patch'])
-  print  (str(major), str(minor), str(patch)
+  print str(major), str(minor), str(patch)
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
