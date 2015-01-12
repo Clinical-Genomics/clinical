@@ -21,7 +21,13 @@ def readconfig( config ):
       if len(line) > 5 and not line[0] == "#":
         line = line.rstrip()
         pv = line.split(" ")
-        Params[pv[0]] = pv[1]
+        if len(pv) > 1:
+          arg = pv[0]
+          pv.pop(1)
+          Params[arg] = ' '.join(pv)
+        else:
+          Params[pv[0]] = pv[1]
+        
   return Params
 
 def create_tunnel(tunnel_cmd):
