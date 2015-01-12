@@ -31,9 +31,9 @@ cursor.execute(cmd)
 row = cursor.fetchone()
 if row is not None:
   print str(row)
-  major = int(row[major])
-  minor = int(row[minor])
-  patch = int(row[patch])
+  major = int(row['major'])
+  minor = int(row['minor'])
+  patch = int(row['patch'])
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
