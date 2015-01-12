@@ -13,10 +13,15 @@ from dbaccess import *
 import subprocess
 import psutil
 
-tunnel_pid = create_tunnel(cmnd)
 
 pars = readconfig('hej')
 print pars['CLINICALDBUSER']
+for pr in pars:
+  print pr, pars[pr]
+
+exit(0)
+
+tunnel_pid = create_tunnel(cmnd)
 
 cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
