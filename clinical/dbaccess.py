@@ -85,23 +85,21 @@ def generalquery( cursor, query ):
   return respons 
   
 def insertorupdate( cursor, table, column, entry, arrayinsert ):
-  cursor.execute(""" show index from """+table+"""r  """)
+  cursor.execute(""" show index from """+table+"""  """)
   indexkey = cursor.fetchone()
-  print indexkey['Column_name']
+#  print indexkey['Column_name']
   if not indexkey:
     return "Could not get primary key"
   else:
     print "1", str(indexkey), "2"
-  exit (0)
-  
-  cursor.execute(""" SELECT %s FROM %s WHERE %s = %s """, 
-              (indexkey['Column_name'], table, entry, ))
-  if not cursor.fetchone():
-    print "Support parameters not yet added"
+
+  cursor.execute(""" SELECT """+indexkey['Column_name']+""" FROM """+table+""" WHERE """+column+""" = %s """, 
+              (entry, ))
+  key = cursor.fetchone()
+  if not key:
+    print "Entry not yet added"
   else:
-    hit = cursor.fetchone()
-  print hit[indexkey['Column_name']], indexkey['Column_name']
-  
+    print "Key is " + key
 
 
   
