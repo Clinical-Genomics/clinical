@@ -34,6 +34,7 @@ def dbclose( Cnx, Cursor):
   return
 
 def create_tunnel(tunnel_cmd):
+    print psutil.Process(os.getpid()).username
     ssh_process = subprocess.Popen(tunnel_cmd,  universal_newlines=True,
                                                 shell=True,
                                                 stdout=subprocess.PIPE,
