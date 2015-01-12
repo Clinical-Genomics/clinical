@@ -13,9 +13,6 @@ from dbaccess import *
 import subprocess
 import psutil
 
-# ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se
-cmnd = 'ssh -fN -L 3307:localhost:3306 hiseq.clinical@clinical-db.scilifelab.se'
-
 tunnel_pid = create_tunnel(cmnd)
 
 pars = readconfig('hej')
