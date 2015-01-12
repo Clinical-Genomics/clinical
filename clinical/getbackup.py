@@ -42,10 +42,10 @@ else:
   exit (pars['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
          +str(major)+"."+str(minor)+"."+str(patch))
 
+res = insertorupdate( cursor, backup, runname, "141215_D00134_0167_AHB0VJADXX", [] )
+
 dbclose(cnx, cursor)
 
-#p = ssh_process.poll()
-#print str(p), tunnel_pid
 tunnel_pid.terminate()
 
 exit(0)
