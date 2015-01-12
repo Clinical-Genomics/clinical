@@ -84,7 +84,7 @@ def generalquery( cursor, query ):
   return respons 
   
 def insertorupdate( cursor, table, column, entry, arrayinsert ):
-  cursor.execute(""" show index from %s """, (table, ))
+  cursor.execute(""" show index from backup """)
   if not cursor.fetchone():
     return "Could not get primary key"
   else:
