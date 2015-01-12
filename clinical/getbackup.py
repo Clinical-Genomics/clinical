@@ -30,9 +30,9 @@ _VERSION_ = pars['DBVERSION']
 cursor.execute(cmd)
 row = cursor.fetchone()
 if row is not None:
-  major = row[0]
-  minor = row[1]
-  patch = row[2]
+  major = row.major
+  minor = row.minor
+  patch = row.patch
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
