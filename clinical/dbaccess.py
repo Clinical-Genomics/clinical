@@ -85,7 +85,7 @@ def generalquery( cursor, query ):
   return respons 
   
 def insertorupdate( cursor, table, column, entry, arrayinsert ):
-  cursor.execute(""" show index from backup """)
+  cursor.execute(""" show index from """+table+"""  """)
   indexkey = cursor.fetchone()
   print indexkey['Column_name']
   if not indexkey:
