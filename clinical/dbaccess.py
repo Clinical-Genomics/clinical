@@ -89,7 +89,7 @@ def insertorupdate( cursor, table, column, entry, arrayinsert ):
     return "Could not get primary key"
   else:
     indexkey = cursor.fetchone()
-  print str(indexkey)
+  print "1", str(indexkey), "2"
   exit (0)
   
   cursor.execute(""" SELECT %s FROM %s WHERE %s = %s """, 
