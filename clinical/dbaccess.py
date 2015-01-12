@@ -14,7 +14,10 @@ import psutil
 import subprocess
 
 def readconfig( config ):
-  Configfile = "/home/hiseq.clinical/.scilifelabrc"
+  if os.path.isfile(config):
+    Configfile = config
+  else:
+    Configfile = "/home/hiseq.clinical/.scilifelabrc"
   Params = {}
   with open(Configfile, "r") as Confs:
     for line in Confs:
