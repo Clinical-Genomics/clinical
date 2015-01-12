@@ -34,7 +34,7 @@ def dbclose( Cnx, Cursor):
   return
 
 def create_tunnel(tunnel_cmd):
-    print psutil.Process(os.getpid()).username
+    print psutil.Process(os.getpid()).username()
     ssh_process = subprocess.Popen(tunnel_cmd,  universal_newlines=True,
                                                 shell=True,
                                                 stdout=subprocess.PIPE,
@@ -53,7 +53,7 @@ def create_tunnel(tunnel_cmd):
         # Unfortunately there is no direct way to get the pid of the spawned ssh process, so we'll find it
         # by finding a matching process using psutil.
  
-        current_username = psutil.Process(os.getpid()).username
+        current_username = psutil.Process(os.getpid()).username()
         ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline == tunnel_cmd.split() and proc.username == current_username]
         print current_username
         if len(ssh_processes) == 1:
