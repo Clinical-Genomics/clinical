@@ -30,10 +30,10 @@ _VERSION_ = pars['DBVERSION']
 cursor.execute(cmd)
 row = cursor.fetchone()
 if row is not None:
-  print str(row)
   major = int(row['major'])
   minor = int(row['minor'])
   patch = int(row['patch'])
+  print  (str(major), str(minor), str(patch)
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
@@ -44,8 +44,6 @@ else:
 
 cmd2 = """ SELECT major, minor, patch FROM version ORDER BY time """
 results = generalquery(cursor, cmd2)
-for res in results:
-  print str(res)
 
 dbclose(cnx, cursor)
 
