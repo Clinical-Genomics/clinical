@@ -43,8 +43,8 @@ else:
 
 dbclose(cnx, cursor)
 
-p = ssh_process.poll()
-print str(p), tunnel_pid
+#p = ssh_process.poll()
+#print str(p), tunnel_pid
 tunnel_pid.terminate()
 
 exit(0)
