@@ -24,7 +24,7 @@ def readconfig( config ):
         if len(pv) > 1:
           arg = pv[0]
           pv.pop(1)
-          Params[arg] = ' '.join(pv)
+          Params[arg] = ' '.join(map(pv))
         else:
           Params[pv[0]] = pv[1]
   return Params
