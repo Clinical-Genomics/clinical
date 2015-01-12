@@ -15,13 +15,9 @@ import psutil
 
 
 pars = readconfig('hej')
-print pars['CLINICALDBUSER']
-for pr in pars:
-  print pr, pars[pr]
+# print pars['CLINICALDBUSER']
 
-exit(0)
-
-tunnel_pid = create_tunnel(cmnd)
+tunnel_pid = create_tunnel(pars['TUNNELCMD'])
 
 cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
