@@ -33,11 +33,11 @@ if row is not None:
   major = int(row['major'])
   minor = int(row['minor'])
   patch = int(row['patch'])
-  print str(major), str(minor), str(patch)
+#  print str(major), str(minor), str(patch)
 else:
   sys.exit("Incorrect DB, version not found.")
 if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
-  print " Correct database version "+str(_VERSION_)+"      DB "+pars['STATSDB']
+  print "Correct database version "+str(_VERSION_)+"      DB "+pars['STATSDB']
 else:
   exit (pars['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
          +str(major)+"."+str(minor)+"."+str(patch))
