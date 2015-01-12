@@ -30,7 +30,8 @@ _VERSION_ = pars['DBVERSION']
 cursor.execute(cmd)
 row = cursor.fetchone()
 if row is not None:
-  major = row.major
+  print str(row[0])
+  major = row[0].major
   minor = row.minor
   patch = row.patch
 else:
