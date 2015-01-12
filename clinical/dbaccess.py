@@ -24,28 +24,28 @@ def readconfig( config ):
   return Params
 
 def create_tunnel(tunnel_cmd):
-    ssh_process = subprocess.Popen(tunnel_cmd,  universal_newlines=True,
+  ssh_process = subprocess.Popen(tunnel_cmd,  universal_newlines=True,
                                                 shell=True,
                                                 stdout=subprocess.PIPE,
                                                 stderr=subprocess.STDOUT,
                                                 stdin=subprocess.PIPE)
     # Assuming that the tunnel command has "-f" and "ExitOnForwardFailure=yes", then the 
     # command will return immediately so we can check the return status with a poll().
-    while True:
-        p = ssh_process.poll()
-        if p is not None: break
-        time.sleep(1)
-     if p == 0:
+  while True:
+    p = ssh_process.poll()
+    if p is not None: break
+    time.sleep(1)
+  if p == 0:
         # Unfortunately there is no direct way to get the pid of the spawned ssh process, so we'll find it
         # by finding a matching process using psutil.
-         current_username = psutil.Process(os.getpid()).username()
-        ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline() == tunnel_cmd.split() and proc.username() == current_username]
-        if len(ssh_processes) == 1:
-            return ssh_processes[0]
-        else:
-            raise RuntimeError, 'multiple (or zero?) tunnel ssh processes found: ' + str(ssh_processes) 
+    current_username = psutil.Process(os.getpid()).username()
+    ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline() == tunnel_cmd.split() and proc.username() == current_username]
+    if len(ssh_processes) == 1:
+      return ssh_processes[0]
     else:
-        raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
+      raise RuntimeError, 'multiple (or zero?) tunnel ssh processes found: ' + str(ssh_processes) 
+  else:
+    raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
 
 def dbconnect( Host, Port, Db, User, Passwd): 
   Cnx = mysql.connect(user=User, port=int(Port), host=Host, passwd=Passwd, db=Db)
