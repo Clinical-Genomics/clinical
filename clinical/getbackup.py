@@ -13,8 +13,11 @@ from dbaccess import *
 import subprocess
 import psutil
 
-
-pars = readconfig('hej')
+if (len(sys.argv)>1):
+  configfile = sys.argv[1]
+else:
+  configfile = 'None'
+pars = readconfig(configfile)
 # print pars['CLINICALDBUSER']
 
 tunnel_pid = create_tunnel(pars['TUNNELCMD'])
