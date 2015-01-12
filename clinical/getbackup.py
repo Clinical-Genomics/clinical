@@ -42,6 +42,8 @@ else:
 
 cmd2 = """ SELECT major, minor, patch FROM version ORDER BY time """
 results = generalquery(cursor, cmd2)
+for rs in results:
+  print rs['major']
 
 dbclose(cnx, cursor)
 
