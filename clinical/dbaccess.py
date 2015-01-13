@@ -14,7 +14,6 @@ import psutil
 import subprocess
 
 def readconfig( config ):
-def read_config(config):
   """Reads parameters from a config file.
 
   Args:
