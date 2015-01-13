@@ -25,22 +25,13 @@ tunnel_pid = create_tunnel(pars['TUNNELCMD'])
 cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
 
-cmd = """ SELECT major, minor, patch FROM version ORDER BY time DESC LIMIT 1 """
-_VERSION_ = pars['DBVERSION']
-cursor.execute(cmd)
-row = cursor.fetchone()
-if row is not None:
-  major = int(row['major'])
-  minor = int(row['minor'])
-  patch = int(row['patch'])
-#  print str(major), str(minor), str(patch)
-else:
-  sys.exit("Incorrect DB, version not found.")
-if (str(major)+"."+str(minor)+"."+str(patch) == _VERSION_):
-  print "Correct database version "+str(_VERSION_)+"      DB "+pars['STATSDB']
-else:
-  exit (pars['STATSDB'] + "Incorrect DB version. This script is made for "+str(_VERSION_)+" not for "
-         +str(major)+"."+str(minor)+"."+str(patch))
+ver = versioncheck(pars['STATSDB'], pars['DBVEERSION'])
+
+if not ver == 'True':
+  print "Wrong db " + ver
+  dbclose(cnx, cursor)
+  tunnel_pid.terminate()
+  exit(0) 
 
 res = insertorupdate( cursor, "backup", "runname", "141215_D00134_0167_AHB0VJADXX", [] )
 
