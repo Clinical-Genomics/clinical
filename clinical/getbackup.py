@@ -25,7 +25,7 @@ tunnel_pid = create_tunnel(pars['TUNNELCMD'])
 cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
 
-ver = versioncheck(pars['STATSDB'], pars['DBVEERSION'])
+ver = versioncheck(pars['STATSDB'], pars['DBVERSION'])
 
 if not ver == 'True':
   print "Wrong db " + ver
