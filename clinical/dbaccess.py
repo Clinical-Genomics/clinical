@@ -128,12 +128,12 @@ def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
   
   cursor.execute(""" SELECT """ + indexkey['Column_name'] + """ FROM """ + table + """ WHERE """ + column + """ = %s """, 
               (entry, ))
-  qkey = cursor.fetchone()
+  key = cursor.fetchone()
   if key:
     print "Entry exists ", key
     setvalue = ""
-    for key in insertdict:
-      setvalue += key + "='" + insertdict[key] + "', "
+    for dictkey in insertdict:
+      setvalue += dictkey + "='" + insertdict[dictkey] + "', "
     setvalue = " " + setvalue[:-2] + " "
     print setvalue
     print (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
@@ -158,9 +158,9 @@ def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
     print "Entry not yet added, will be added."
     columns = ""
     values = ""
-    for key in insertdict:
-      columns += key + ", "
-      values += "'" + insertdict[key] + "', "
+    for dictkey in insertdict:
+      columns += dictkey + ", "
+      values += "'" + insertdict[dictkey] + "', "
     columns = " (" + columns[:-2] + ") "
     values = " (" + values[:-2] + ") " 
     print columns, values
