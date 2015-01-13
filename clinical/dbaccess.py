@@ -137,7 +137,7 @@ def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
     setvalue = " " + setvalue[:-2] + " "
     print setvalue
     print (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
-                         """ = '""" + key + """' """)
+                         """ = '""" + key[indexkey['Column_name']] + """' """)
     try:
       cursor.execute(""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
                          """ = '""" + key[indexkey['Column_name']] + """' """)
