@@ -43,7 +43,7 @@ nasdir = pars['RUNFOLDER']
   
 nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir}
 
-res = insertorupdate( cursor, "backup", "runname", pars['RUNFOLDER'], nasdict )
+res = insertorupdate( cursor, "backup", "runname", runfolder, nasdict )
 print res
 
 dbclose(cnx, cursor)
