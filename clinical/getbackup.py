@@ -40,12 +40,12 @@ starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDE
 endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
 nas = socket.gethostname()
 nasdir = pars['RUNFOLDER']
-name_ = runname.split("_")
 rundate = list(runfolder.split("_")[0])
 rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
 
   
-nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 'startdate': rundate}
+nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
+           'runname': runfolder, 'startdate': rundate}
 
 res = insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
 print res
