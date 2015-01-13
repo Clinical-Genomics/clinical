@@ -120,7 +120,7 @@ def versioncheck( cursor, dbname, ver ):
     return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
   
   
-def insertorupdate( cursor, table, column, entry, insertdict ):
+def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
   cursor.execute(""" show index from """ + table + """  """)
   indexkey = cursor.fetchone()
   if not indexkey:
