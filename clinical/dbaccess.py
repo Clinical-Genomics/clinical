@@ -128,7 +128,7 @@ def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
   
   cursor.execute(""" SELECT """ + indexkey['Column_name'] + """ FROM """ + table + """ WHERE """ + column + """ = %s """, 
               (entry, ))
-  key = cursor.fetchone()
+  qkey = cursor.fetchone()
   if key:
     print "Entry exists ", key
     setvalue = ""
@@ -140,7 +140,7 @@ def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
                          """ = '""" + key + """' """)
     try:
       cursor.execute(""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
-                         """ = '""" + key + """' """)
+                         """ = '""" + qkey + """' """)
     except mysql.IntegrityError, e: 
       print "Error %d: %s" % (e.args[0],e.args[1])
       exit("DB error")
