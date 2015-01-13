@@ -120,22 +120,60 @@ def versioncheck( cursor, dbname, ver ):
     return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
   
   
-def insertorupdate( cursor, table, column, entry, arrayinsert ):
-  cursor.execute(""" show index from """+table+"""  """)
+def insertorupdate( cursor, table, column, entry, insertdict ):
+  cursor.execute(""" show index from """ + table + """  """)
   indexkey = cursor.fetchone()
-#  print indexkey['Column_name']
   if not indexkey:
     return "Could not get primary key"
-#  else:
-#    print "1", str(indexkey), "2"
-
-  cursor.execute(""" SELECT """+indexkey['Column_name']+""" FROM """+table+""" WHERE """+column+""" = %s """, 
+  
+  cursor.execute(""" SELECT """ + indexkey['Column_name'] + """ FROM """ + table + """ WHERE """ + column + """ = %s """, 
               (entry, ))
   key = cursor.fetchone()
   if not key:
     print "Entry not yet added, will be added."
+    setvalue = ""
+    for key in insertdict:
+      setvalue += key + "='" + insertdict[key] + "', "
+    setvalue = " (" + setvalue[:-2] + ") "
+    print setvalue
+    try:
+      cursor.execute(""" UPDATE """ + table + """ SET """ + setvalue)
+    except mysql.IntegrityError, e: 
+      print "Error %d: %s" % (e.args[0],e.args[1])
+      exit("DB error")
+# handle a specific error condition
+    except mysql.Error, e:
+      print "Error %d: %s" % (e.args[0],e.args[1])
+      exit("Syntax error")
+# handle a generic error condition
+    except mysql.Warning, e:
+      exit("MySQL warning")
+# handle warnings, if the cursor you're using raises them
+    cnx.commit()
+    return True
+  else:
+    columns = ""
+    values = ""
+    for key in insertdict:
+      columns += key + ", "
+      values += "'" + insertdict[key] + "', "
+    columns = " (" + columns[:-2] + ") "
+    values = " (" + values[:-2] + ") " 
+    print columns, values
+    try:
+      cursor.execute(""" INSERT INTO """ + table + """  """ + columns + """ VALUES """ + values )
+    except mysql.IntegrityError, e: 
+      print "Error %d: %s" % (e.args[0],e.args[1])
+      exit("DB error")
+# handle a specific error condition
+    except mysql.Error, e:
+      print "Error %d: %s" % (e.args[0],e.args[1])
+      exit("Syntax error")
+# handle a generic error condition
+    except mysql.Warning, e:
+      exit("MySQL warning")
+# handle warnings, if the cursor you're using raises them
+    cnx.commit()
+    return cursor.lastrowid
 
-  
-  return    "worked"      #    update/insert/fail
-  
   
