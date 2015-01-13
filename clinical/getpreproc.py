@@ -36,7 +36,7 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
-fc = runfolder.split("_")[3][-1:]
+fc = runfolder.split("_")[3][:9]
 startpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/Unaligned/Makefile" )))
 endpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER']
                  + runfolder + "/Unaligned/Basecall_Stats_" + fc + "/Demultiplex_Stats.htm" )))
