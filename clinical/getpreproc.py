@@ -36,8 +36,11 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
+fc = runfolder.split("_")[3]
 startpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/Unaligned/Makefile" )))
-endpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/copycomplete.txt" )))
+endpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER']
+                 + runfolder + "/Unaligned/Basecall_Stats_" + fc + "/Demultiplex_Stats.htm" )))
+frompreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/copycomplete.txt" )))
 preproc = socket.gethostname()
 preprocdir = pars['DEMUXFOLDER']
 rundate = list(runfolder.split("_")[0])
