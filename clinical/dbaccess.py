@@ -126,18 +126,19 @@ def insertorupdate( cursor, table, column, entry, insertdict ):
   if not indexkey:
     return "Could not get primary key"
   
-  cursor.execute(""" SELECT """ + indexkey['Column_name'] + """ FROM """ + table + """ WHERE """ + column + """ = %s """, 
+  cursor.execute(""" SELECT FROM """ + table + """ WHERE """ + column + """ = %s """, 
               (entry, ))
   key = cursor.fetchone()
-  if not key:
-    print "Entry not yet added, will be added."
+  if key:
+    print "Entry exists ", key
     setvalue = ""
     for key in insertdict:
       setvalue += key + "='" + insertdict[key] + "', "
     setvalue = " (" + setvalue[:-2] + ") "
     print setvalue
     try:
-      cursor.execute(""" UPDATE """ + table + """ SET """ + setvalue)
+      cursor.execute(""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
+                         """ = '""" + key + """' """)
     except mysql.IntegrityError, e: 
       print "Error %d: %s" % (e.args[0],e.args[1])
       exit("DB error")
@@ -152,6 +153,7 @@ def insertorupdate( cursor, table, column, entry, insertdict ):
     cnx.commit()
     return True
   else:
+    print "Entry not yet added, will be added."
     columns = ""
     values = ""
     for key in insertdict:
