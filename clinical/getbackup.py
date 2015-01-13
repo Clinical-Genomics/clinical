@@ -1,8 +1,7 @@
 #!/usr/bin/python
 #
-#
 import sys
-#import MySQLdb as mysql
+import datetime
 import time
 import glob
 import re
@@ -13,12 +12,16 @@ from dbaccess import *
 import subprocess
 import psutil
 
-if (len(sys.argv)>1):
-  configfile = sys.argv[1]
+runfolder = sys.argv[1]
+
+if (len(sys.argv)>2):
+  configfile = sys.argv[2]
 else:
   configfile = 'None'
 pars = readconfig(configfile)
-# print pars['CLINICALDBUSER']
+
+if not os.path.isdir(pars['RUNFOLDER'] + runfolder):
+  sys.exit("No directory " + pars['RUNFOLDER'] + runfolder)
 
 tunnel_pid = create_tunnel(pars['TUNNELCMD'])
 
@@ -33,10 +36,16 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
-res = insertorupdate( cursor, "backup", "runname", "141215_D00134_0167_AHB0VJADXX", [] )
+starttonas = datetime.datetime.fromtimestamp(os.path.getmtime(rundir + "/RunInfo.xml" ))
+endtonas = datetime.datetime.fromtimestamp(os.path.getmtime(rundir + "/RTAComplete.txt" ))
+nas = socket.gethostname()
+nasdir = pars['RUNFOLDER']
+  
+nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir}
+
+res = insertorupdate( cursor, "backup", "runname", pars['RUNFOLDER'], nasdict )
+print res
 
 dbclose(cnx, cursor)
-
 tunnel_pid.terminate()
-
 exit(0)
