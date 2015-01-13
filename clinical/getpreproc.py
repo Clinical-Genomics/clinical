@@ -36,7 +36,7 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
-startpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder )))
+startpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/Unaligned/Makefile" )))
 endpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/copycomplete.txt" )))
 preproc = socket.gethostname()
 preprocdir = pars['DEMUXFOLDER']
