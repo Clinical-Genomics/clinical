@@ -126,7 +126,7 @@ def insertorupdate( cursor, table, column, entry, insertdict ):
   if not indexkey:
     return "Could not get primary key"
   
-  cursor.execute(""" SELECT FROM """ + table + """ WHERE """ + column + """ = %s """, 
+  cursor.execute(""" SELECT """ + indexkey['Column_name'] + """ FROM """ + table + """ WHERE """ + column + """ = %s """, 
               (entry, ))
   key = cursor.fetchone()
   if key:
