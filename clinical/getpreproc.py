@@ -48,7 +48,7 @@ rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+ru
 
   
 nasdict = {'startpreproc': startpreproc, 'endpreproc': endpreproc, 'preproc': preproc, 'preprocdir': preprocdir, 
-           'runname': runfolder, 'startdate': rundate}
+           'runname': runfolder, 'startdate': rundate, 'frompreproc': frompreproc}
 
 res = insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
 print res
