@@ -20,8 +20,8 @@ else:
   configfile = 'None'
 pars = readconfig(configfile)
 
-if not os.path.isdir(pars['RUNFOLDER'] + runfolder):
-  sys.exit("No directory " + pars['RUNFOLDER'] + runfolder)
+if not os.path.isdir(pars['DEMUXFOLDER'] + runfolder):
+  sys.exit("No directory " + pars['DEMUXFOLDER'] + runfolder)
 
 tunnel_pid = create_tunnel(pars['TUNNELCMD'])
 
@@ -36,15 +36,15 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
-starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
-endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
-nas = socket.gethostname()
-nasdir = pars['RUNFOLDER']
+startpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder )))
+endpreproc = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['DEMUXFOLDER'] + runfolder + "/copycomplete.txt" )))
+preproc = socket.gethostname()
+preprocdir = pars['DEMUXFOLDER']
 rundate = list(runfolder.split("_")[0])
 rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
 
   
-nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
+nasdict = {'startpreproc': startpreproc, 'endpreproc': endpreproc, 'preproc': preproc, 'preprocdir': preprocdir, 
            'runname': runfolder, 'startdate': rundate}
 
 res = insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
