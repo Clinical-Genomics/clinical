@@ -15,15 +15,15 @@ import subprocess
 
 def readconfig( config ):
 def read_config(config):
-"""Reads parameters from a config file.
+  """Reads parameters from a config file.
 
-Args:
-  config (str): path to config file
-  If config does not exist the default will be used
+  Args:
+    config (str): path to config file
+    If config does not exist the default will be used
   
-Returns:
-  dict: parameters from the config file (unparsed)
-"""
+  Returns:
+    dict: parameters from the config file (unparsed)
+  """
   if os.path.isfile(config):
     Configfile = config
   else:
@@ -94,6 +94,33 @@ def generalquery( cursor, query ):
   respons = cursor.fetchall()
   return respons 
   
+def versioncheck( cursor, dbname, ver ):
+  """Checks version of database against str( dbname) and str ( ver )  [normally from the config file]
+
+  Args:
+    dbname (str): database name as stored in table version
+    ver (str): version string in the format major.minor.patch
+
+  Returns:
+    TRUE: if identical
+    str: Database name and version from table version if different
+  """
+  cmd = """ SELECT major, minor, patch, name FROM version ORDER BY time DESC LIMIT 1 """
+  cursor.execute(cmd)
+  row = cursor.fetchone()
+  if row is not None:
+    major = row['major']
+    minor = row['minor']
+    patch = row['patch']
+    name = row['name']
+  else:
+    sys.exit("Incorrect DB, version not found.")
+  if (str(major)+"."+str(minor)+"."+str(patch) == ver and dbname == name):
+    return 'True'
+  else:
+    return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
+  
+  
 def insertorupdate( cursor, table, column, entry, arrayinsert ):
   cursor.execute(""" show index from """+table+"""  """)
   indexkey = cursor.fetchone()
@@ -108,29 +135,6 @@ def insertorupdate( cursor, table, column, entry, arrayinsert ):
   key = cursor.fetchone()
   if not key:
     print "Entry not yet added, will be added."
-    try:
-      cursor.execute(""" INSERT INTO `supportparams` (document_path, systempid, systemos, systemperlv, systemperlexe, 
-                      idstring, program, commandline, sampleconfig_path, sampleconfig, time) VALUES (%s, %s, %s, %s, 
-                      %s, %s, %s, %s, %s, %s, %s) """, (basedir+"Unaligned/support.txt", Systempid, Systemos, 
-                      Systemperlv, Systemperlexe, Idstring, Program, commandline, samplesheet, SampleSheet, now, ))
-    except mysql.IntegrityError, e: 
-      print "Error %d: %s" % (e.args[0],e.args[1])
-      exit("DB error")
-# handle a specific error condition
-    except mysql.Error, e:
-      print "Error %d: %s" % (e.args[0],e.args[1])
-      exit("Syntax error")
-# handle a generic error condition
-    except mysql.Warning, e:
-      exit("MySQL warning")
-# handle warnings, if the cursor you're using raises them
-    cnx.commit()
-  print "Support parameters from "+basedir+"Unaligned/support.txt now added to DB with supportparams_id: "+str(cursor.lastrowid)
-  supportparamsid = cursor.lastrowid
-
-  else:
-    print "Key is " + key
-
 
   
   return    "worked"      #    update/insert/fail
