@@ -13,32 +13,6 @@ import select
 import psutil
 import subprocess
 
-def versioncheck( cursor, dbname, ver ):
-  """Checks version of database against str( dbname) and str ( ver )  [normally from the config file]
-
-  Args:
-    dbname (str): database name as stored in table version
-    ver (str): version string in the format major.minor.patch
-
-  Returns:
-    TRUE: if identical
-    str: Database name and version from table version if different
-  """
-  cmd = """ SELECT major, minor, patch, name FROM version ORDER BY time DESC LIMIT 1 """
-  cursor.execute(cmd)
-  row = cursor.fetchone()
-  if row is not None:
-    major = row['major']
-    minor = row['minor']
-    patch = row['patch']
-    name = row['name']
-  else:
-    sys.exit("Incorrect DB, version not found.")
-  if (str(major)+"."+str(minor)+"."+str(patch) == ver and dbname == name):
-    return 'True'
-  else:
-    return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
-  
   
 def insertorupdate( cnx, cursor, table, column, entry, insertdict ):
   cursor.execute(""" show index from """ + table + """  """)
