@@ -36,12 +36,13 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
-if (os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml") and 
+if (os.path.isfile() and 
     os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt")):
+  print 
   starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
   endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
 else:
-  sys.exit(9)
+  sys.exit("not "+pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt "+pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")
 
 nas = socket.gethostname()
 nasdir = pars['RUNFOLDER']
