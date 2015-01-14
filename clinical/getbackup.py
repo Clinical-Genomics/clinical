@@ -36,8 +36,8 @@ if not ver == 'True':
   tunnel_pid.terminate()
   exit(0) 
 
-if (os.path.isfile() and 
-    os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt")):
+if (os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt") and 
+    os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")):
   print 
   starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
   endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
