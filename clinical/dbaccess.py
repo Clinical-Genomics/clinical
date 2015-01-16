@@ -50,19 +50,19 @@ class create_tunnel(tunnel_cmd):
                                        stderr=subprocess.STDOUT, stdin=subprocess.PIPE)
 
         while True:
-        p = ssh_process.poll()
-        if p is not None: break
-          time.sleep(1)
-          if p == 0:
-        current_username = psutil.Process(os.getpid()).username()
-        ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline() == tunnel_cmd.split() and 
+          p = ssh_process.poll()
+          if p is not None: break
+            time.sleep(1)
+            if p == 0:
+          current_username = psutil.Process(os.getpid()).username()
+          ssh_processes = [proc for proc in psutil.get_process_list() if proc.cmdline() == tunnel_cmd.split() and 
                          proc.username() == current_username]
-        if len(ssh_processes) == 1:
-          self.pid = ssh_processes[0]
+          if len(ssh_processes) == 1:
+            self.pid = ssh_processes[0]
+          else:
+            raise RuntimeError, 'multiple (or zero?) tunnel ssh processes found: ' + str(ssh_processes) 
         else:
-          raise RuntimeError, 'multiple (or zero?) tunnel ssh processes found: ' + str(ssh_processes) 
-      else:
-        raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
+          raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
 
 
     def __enter__(self):
