@@ -26,9 +26,9 @@ if not os.path.isdir(pars['RUNFOLDER'] + runfolder):
 with create_tunnel(pars['TUNNELCMD']):
 
   with dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
-                        pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD']):
+                        pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD']) as dbc:
 
-    ver = dbconnect.versioncheck(pars['STATSDB'], pars['DBVERSION'])
+    ver = dbc.versioncheck(pars['STATSDB'], pars['DBVERSION'])
 
     if not ver == 'True':
       print "Wrong db " + ver
