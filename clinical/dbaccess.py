@@ -24,22 +24,22 @@ def readconfig( config ):
     dict: parameters from the config file (unparsed)
   """
   if os.path.isfile(config):
-    Configfile = config
+    configfile = config
   else:
-    Configfile = "/home/hiseq.clinical/.scilifelabrc"
-  Params = {}
-  with open(Configfile, "r") as Confs:
-    for line in Confs:
+    configfile = "/home/hiseq.clinical/.scilifelabrc"
+  params = {}
+  with open(configfile, "r") as confs:
+    for line in confs:
       if len(line) > 5 and not line[0] == "#":
         line = line.rstrip()
         pv = line.split(" ")
         if len(pv) > 1:
           arg = pv[0]
           pv.pop(0)
-          Params[arg] = ' '.join(pv)
+          params[arg] = ' '.join(pv)
         else:
-          Params[pv[0]] = pv[1]
-  return Params
+          params[pv[0]] = pv[1]
+  return params
 
 class create_tunnel(object):
 
