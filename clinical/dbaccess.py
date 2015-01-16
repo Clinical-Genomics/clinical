@@ -44,12 +44,12 @@ def readconfig( config ):
 class create_tunnel(object):
 
     def __init__(self, tunnel_cmd):
-      """Opens an ssh tunnel as defined by the tunnel_cmd
+        """Opens an ssh tunnel as defined by the tunnel_cmd
 
-      Args:
-        tunnel_cmd (str): tunnel_cmd
-        E.g. "ssh -fN -L 1231:localhost:2345 user@ssh.server.com"
-      """
+        Args:
+          tunnel_cmd (str): tunnel_cmd
+          E.g. "ssh -fN -L 1231:localhost:2345 user@ssh.server.com"
+        """
 
         self.tunnelcmd = tunnel_cmd
         ssh_process = subprocess.Popen(tunnel_cmd,  universal_newlines=True, shell=True, stdout=subprocess.PIPE,
