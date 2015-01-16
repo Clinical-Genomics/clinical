@@ -139,16 +139,16 @@ class dbconnect(object):
     return respons 
   
   def versioncheck( self, dbname, ver ):
-  """Checks version of database against str( dbname) and str ( ver )  [normally from the config file]
+    """Checks version of database against str( dbname) and str ( ver )  [normally from the config file]
 
-  Args:
-    dbname (str): database name as stored in table version
-    ver (str): version string in the format major.minor.patch
+    Args:
+      dbname (str): database name as stored in table version
+      ver (str): version string in the format major.minor.patch
 
-  Returns:
-    TRUE: if identical
-    str: Database name and version from table version if different
-  """
+    Returns:
+      TRUE: if identical
+      str: Database name and version from table version if different
+    """
     cmd = """ SELECT major, minor, patch, name FROM version ORDER BY time DESC LIMIT 1 """
     self.cursor.execute(cmd)
     row = self.cursor.fetchone()
