@@ -41,7 +41,7 @@ def readconfig( config ):
           Params[pv[0]] = pv[1]
   return Params
 
-class create_tunnel(tunnel_cmd):
+class create_tunnel(object):
 
     def __init__(self, tunnel_cmd):
         print '__init__'
