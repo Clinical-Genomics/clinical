@@ -28,7 +28,7 @@ with create_tunnel(pars['TUNNELCMD']):
   with dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
                         pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD']):
 
-    ver = versioncheck(pars['STATSDB'], pars['DBVERSION'])
+    ver = dbconnect.versioncheck(pars['STATSDB'], pars['DBVERSION'])
 
     if not ver == 'True':
       print "Wrong db " + ver
