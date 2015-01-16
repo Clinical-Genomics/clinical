@@ -25,37 +25,36 @@ if not os.path.isdir(pars['RUNFOLDER'] + runfolder):
 
 with create_tunnel(pars['TUNNELCMD']):
 
-  cnx, cursor = dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
-                        pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD'])
+  with dbconnect(pars['CLINICALDBHOST'], pars['CLINICALDBPORT'], pars['STATSDB'], 
+                        pars['CLINICALDBUSER'], pars['CLINICALDBPASSWD']):
 
-  ver = versioncheck(cursor, pars['STATSDB'], pars['DBVERSION'])
+    ver = versioncheck(pars['STATSDB'], pars['DBVERSION'])
 
-  if not ver == 'True':
-    print "Wrong db " + ver
-    dbclose(cnx, cursor)
+    if not ver == 'True':
+      print "Wrong db " + ver
+#    dbclose(cnx, cursor)
 #    tunnel_pid.terminate()
-    exit(0) 
+      exit(0) 
 
-  if (os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt") and 
-    os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")):
-    starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
-    endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
-  else:
+    if (os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt") and 
+        os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")):
+      starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
+      endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
+    else:
 #    tunnel_pid.terminate()
-    sys.exit("not "+pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt "+pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")
+      sys.exit("not "+pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt "+pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")
 
-  nas = socket.gethostname()
-  nasdir = pars['RUNFOLDER']
-  rundate = list(runfolder.split("_")[0])
-  rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
+    nas = socket.gethostname()
+    nasdir = pars['RUNFOLDER']
+    rundate = list(runfolder.split("_")[0])
+    rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
 
-  
-  nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
+    nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
            'runname': runfolder, 'startdate': rundate}
 
-  res = insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
-  print res
+    res = insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
+    print res
 
-  dbclose(cnx, cursor)
+#  dbclose(cnx, cursor)
 #tunnel_pid.terminate()
 exit(0)
