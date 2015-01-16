@@ -44,7 +44,7 @@ def readconfig( config ):
 class create_tunnel(tunnel_cmd):
 
     def __init__(self, tunnel_cmd):
-        print '__init__ at'
+        print '__init__'
         self.tunnelcmd = tunnel_cmd
         ssh_process = subprocess.Popen(tunnel_cmd,  universal_newlines=True, shell=True, stdout=subprocess.PIPE,
                                        stderr=subprocess.STDOUT, stdin=subprocess.PIPE)
