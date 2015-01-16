@@ -109,7 +109,7 @@ class dbconnect(object):
 
   def __init__(self, Host, Port, Db, User, Passwd):
     self.cnx = mysql.connect(user=User, port=int(Port), host=Host, passwd=Passwd, db=Db, cursorclass=mysql.cursors.DictCursor)
-    self.cursor = Cnx.cursor()
+    self.cursor = self.cnx.cursor()
 
   def __enter__(self):
 #      print '__enter__()'
