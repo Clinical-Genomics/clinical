@@ -52,7 +52,7 @@ with create_tunnel(pars['TUNNELCMD']):
     nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
            'runname': runfolder, 'startdate': rundate}
 
-    res = insertorupdate( "backup", "runname", runfolder, nasdict )
+    res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
     print res
 
 #  dbclose(cnx, cursor)
