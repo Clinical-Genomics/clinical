@@ -64,9 +64,9 @@ class create_tunnel(object):
         else:
           raise RuntimeError, 'Error creating tunnel: ' + str(p) + ' :: ' + str(ssh_process.stdout.readlines())
 
-#    def __enter__(self):
-#print '__enter__()'
-#        return self
+    def __enter__(self):
+#      print '__enter__()'
+        return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         print '__exit__(%s, %s, %s)' % (exc_type, exc_val, exc_tb)
