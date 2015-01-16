@@ -167,7 +167,7 @@ class dbconnect(object):
   
   def insertorupdate( self, table, column, entry, insertdict ):
     self.cursor.execute(""" show index from """ + table + """  """)
-    indexkey = cursor.fetchone()
+    indexkey = self.cursor.fetchone()
     if not indexkey:
       return "Could not get primary key"
   
