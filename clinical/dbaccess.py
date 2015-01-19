@@ -153,11 +153,10 @@ class dbconnect(object):
         setvalue += dictkey + "='" + insertdict[dictkey] + "', "
       setvalue = " " + setvalue[:-2] + " "
       print setvalue
-      print (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
+      uquery = (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
                          """ = '""" + key[indexkey['Column_name']] + """' """)
       try:
-        self.cursor.execute(""" UPDATE """ + table + """ SE """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
-                         """ = '""" + key[indexkey['Column_name']] + """' """)
+        self.cursor.execute(uquery)
       except mysql.IntegrityError, e: 
         print "Error %d: %s" % (e.args[0],e.args[1])
         exit("DB error")
