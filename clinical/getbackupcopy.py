@@ -43,7 +43,7 @@ with create_tunnel(pars['TUNNELCMD']):
             md5done = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['BACKUPCOPYFOLDER'] + file + ".md5.txt" )))
           else:
             sys.exit("not "+pars['BACKUPCOPYFOLDER'] + file + " or "+pars['BACKUPCOPYFOLDER'] + file + ".md5.txt")
-          nasdict = {'backupdone': backupdone, 'md5done': md5done}
+          nasdict = {'backupdone': backupdone, 'md5done': md5done, 'runname': runname}
           res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
           print res
 
