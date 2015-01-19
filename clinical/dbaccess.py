@@ -149,7 +149,7 @@ class dbconnect(object):
       setvalues = ""
       for dictkey in insertdict:
         setvalues += dictkey + "='" + insertdict[dictkey] + "', "
-      setvalues = " " + setvalue[:-2] + " "
+      setvalues = " " + setvalues[:-2] + " "
       print setvalues
       uquery = (' UPDATE {0} SET {1} WHERE {2} = \'{3}\' '.format(table, setvalues, indexkey['Column_name'], 
                 key[indexkey['Column_name']]))
