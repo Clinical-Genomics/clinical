@@ -89,7 +89,7 @@ class dbconnect(object):
 
   def __exit__(self, exc_type, exc_val, exc_tb):
     if exc_type:
-      if exc_type == '_mysql_exceptions.ProgrammingError':
+      if exc_type.name == '_mysql_exceptions.ProgrammingError':
         "what"
       print '__exit__(%s, %s, %s)' % (exc_type, exc_val, exc_tb)
     self.cursor.close()
