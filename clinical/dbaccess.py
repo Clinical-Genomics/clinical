@@ -97,7 +97,7 @@ class dbconnect(object):
     try:
       self.cursor.execute(query)
     except mysql.IntegrityError, e: 
-      print "Int Error %d: %s" % (e.args[0],e.args[1])
+      print "Integrity Error %d: %s" % (e.args[0],e.args[1])
       exit("DB error")
 # handle a specific error condition
     except mysql.Error, e:
@@ -153,7 +153,7 @@ class dbconnect(object):
         setvalue += dictkey + "='" + insertdict[dictkey] + "', "
       setvalue = " " + setvalue[:-2] + " "
       print setvalue
-      uquery = (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
+      uquery = (""" UPDATE """ + table + """ ST """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
                          """ = '""" + key[indexkey['Column_name']] + """' """)
       try:
         self.cursor.execute(uquery)
@@ -161,9 +161,9 @@ class dbconnect(object):
         print "Int Error %d: %s" % (e.args[0],e.args[1])
         exit("DB error")
 # handle a specific error condition
-      except mysql.Error, e:
-        print "Generic Error %d: %s" % (e.args[0],e.args[1])
-        exit("Syntax error")
+#      except mysql.Error, e:
+#        print "Generic Error %d: %s" % (e.args[0],e.args[1])
+#        exit("Syntax error")
 # handle a generic error condition
       except mysql.Warning, e:
         exit("MySQL warning")
