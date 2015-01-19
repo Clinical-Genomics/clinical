@@ -156,7 +156,7 @@ class dbconnect(object):
       print (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
                          """ = '""" + key[indexkey['Column_name']] + """' """)
       try:
-        self.cursor.execute(""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
+        self.cursor.execute(""" UPDATE """ + table + """ SE """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
                          """ = '""" + key[indexkey['Column_name']] + """' """)
       except mysql.IntegrityError, e: 
         print "Error %d: %s" % (e.args[0],e.args[1])
