@@ -133,7 +133,7 @@ class dbconnect(object):
       name = row['name']
     else:
       sys.exit("Incorrect DB, version not found.")
-    if (str(major)+"."+str(minor)+"."+str(patch) == ver and dbname == name):
+    if ('{0}.{1}.{2}'.format(str(major), str(minor), str(patch)) == ver and dbname == name):
       return 'True'
     else:
       return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
