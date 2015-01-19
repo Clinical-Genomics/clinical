@@ -134,7 +134,7 @@ class dbconnect(object):
     else:
       sys.exit("Incorrect DB, version not found.")
     if (str(major)+"."+str(minor)+"."+str(patch) == ver and dbname == name):
-      return 'True'
+      return True
     else:
       return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
   
