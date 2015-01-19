@@ -18,7 +18,7 @@ else:
   configfile = 'None'
 pars = readconfig(configfile)
 
-if not os.path.isdir():
+if not os.path.isdir(pars['BACKUPCOPYFOLDER']):
   sys.exit("No directory " + pars['BACKUPCOPYFOLDER'])
 
 with create_tunnel(pars['TUNNELCMD']):
