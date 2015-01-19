@@ -12,14 +12,6 @@ from dbaccess import *
 import subprocess
 import psutil
 
-runfolder = sys.argv[1]
-
-if (len(sys.argv)>2):
-  configfile = sys.argv[2]
-else:
-  configfile = 'None'
-pars = readconfig(configfile)
-
 if not os.path.isdir(pars['RUNFOLDER'] + runfolder):
   sys.exit("No directory " + pars['RUNFOLDER'] + runfolder)
 
