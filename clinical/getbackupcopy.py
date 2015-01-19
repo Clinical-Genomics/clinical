@@ -44,7 +44,7 @@ with create_tunnel(pars['TUNNELCMD']):
           else:
             sys.exit("not "+pars['BACKUPCOPYFOLDER'] + file + " or "+pars['BACKUPCOPYFOLDER'] + file + ".md5.txt")
           nasdict = {'backupdone': backupdone, 'md5done': md5done}
-          res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
+          res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
           print res
 
 exit(0)
