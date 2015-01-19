@@ -30,7 +30,7 @@ with create_tunnel(pars['TUNNELCMD']):
 
     ver = dbc.versioncheck(pars['STATSDB'], pars['DBVERSION'])
 
-    if not ver == True:
+    if not ver == 'True':
       print "Wrong db " + ver
       exit(0) 
 
