@@ -153,7 +153,7 @@ class dbconnect(object):
         setvalue += dictkey + "='" + insertdict[dictkey] + "', "
       setvalue = " " + setvalue[:-2] + " "
       print setvalue
-      uquery = (""" UPDATE """ + table + """ ST """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
+      uquery = (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
                          """ = '""" + key[indexkey['Column_name']] + """' """)
       try:
         self.cursor.execute(uquery)
