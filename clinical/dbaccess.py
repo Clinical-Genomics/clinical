@@ -136,7 +136,7 @@ class dbconnect(object):
     if ('{0}.{1}.{2}'.format(str(major), str(minor), str(patch)) == ver and dbname == name):
       return 'True'
     else:
-      return ('{3} {0}.{1}.{2}'.format(str(major), str(minor), str(patch), name)
+      return ('{3} {0}.{1}.{2}'.format(str(major), str(minor), str(patch), name))
   
   def insertorupdate( self, table, column, entry, insertdict ):
     self.cursor.execute(""" show index from """ + table + """  """)
