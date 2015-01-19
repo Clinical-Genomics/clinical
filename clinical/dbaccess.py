@@ -142,7 +142,7 @@ class dbconnect(object):
     if not indexkey:
       return "Could not get primary key"
   
-    self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
+    self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
     key = self.cursor.fetchone()
     if key:
       print "Entry exists ", key
