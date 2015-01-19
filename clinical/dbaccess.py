@@ -158,11 +158,11 @@ class dbconnect(object):
       try:
         self.cursor.execute(uquery)
       except mysql.IntegrityError, e: 
-        print "Error %d: %s" % (e.args[0],e.args[1])
+        print "Int Error %d: %s" % (e.args[0],e.args[1])
         exit("DB error")
 # handle a specific error condition
       except mysql.Error, e:
-        print "Error %d: %s" % (e.args[0],e.args[1])
+        print "Generic Error %d: %s" % (e.args[0],e.args[1])
         exit("Syntax error")
 # handle a generic error condition
       except mysql.Warning, e:
