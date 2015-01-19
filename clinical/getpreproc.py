@@ -47,7 +47,7 @@ with create_tunnel(pars['TUNNELCMD']):
     nasdict = {'startpreproc': startpreproc, 'endpreproc': endpreproc, 'preproc': preproc, 'preprocdir': preprocdir, 
                'runname': runfolder, 'startdate': rundate, 'frompreproc': frompreproc}
 
-    res = insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
+    res = dbc.insertorupdate( cnx, cursor, "backup", "runname", runfolder, nasdict )
     print res
 
 exit(0)
