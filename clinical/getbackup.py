@@ -32,8 +32,6 @@ with create_tunnel(pars['TUNNELCMD']):
 
     if not ver == 'True':
       print "Wrong db " + ver
-#    dbclose(cnx, cursor)
-#    tunnel_pid.terminate()
       exit(0) 
 
     if (os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt") and 
@@ -41,7 +39,6 @@ with create_tunnel(pars['TUNNELCMD']):
       starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
       endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
     else:
-#    tunnel_pid.terminate()
       sys.exit("not "+pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt "+pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")
 
     nas = socket.gethostname()
@@ -55,6 +52,5 @@ with create_tunnel(pars['TUNNELCMD']):
     res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
     print res
 
-#  dbclose(cnx, cursor)
-#tunnel_pid.terminate()
+
 exit(0)
