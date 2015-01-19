@@ -12,16 +12,14 @@ from dbaccess import *
 import subprocess
 import psutil
 
-runfolder = sys.argv[1]
-
-if (len(sys.argv)>2):
-  configfile = sys.argv[2]
+if (len(sys.argv)>1):
+  configfile = sys.argv[1]
 else:
   configfile = 'None'
 pars = readconfig(configfile)
 
-if not os.path.isdir(pars['BACKUPCOPYFOLDER'] + runfolder):
-  sys.exit("No directory " + pars['BACKUPCOPYFOLDER'] + runfolder)
+if not os.path.isdir(pars['BACKUPCOPYFOLDER']):
+  sys.exit("No directory " + pars['BACKUPCOPYFOLDER'])
 
 with create_tunnel(pars['TUNNELCMD']):
 
