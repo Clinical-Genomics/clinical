@@ -154,7 +154,7 @@ class dbconnect(object):
       setvalue = " " + setvalue[:-2] + " "
       print setvalue
       uquery = (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
-                         """ = '""" + key[indexkey['Column_name]] + """' """)
+                         """ = '""" + key[indexkey['Column_name']] + """' """)
       try:
         self.cursor.execute(uquery)
       except mysql.IntegrityError, e: 
