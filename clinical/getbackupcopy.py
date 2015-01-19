@@ -40,9 +40,9 @@ with create_tunnel(pars['TUNNELCMD']):
           if (os.path.isfile(pars['BACKUPCOPYFOLDER'] + file) and 
               os.path.isfile(pars['BACKUPCOPYFOLDER'] + file + ".md5.txt")):
             backupdone = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['BACKUPCOPYFOLDER'] + file )))
-            md5done = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['BACKUPCOPYFOLDER'] + file + "md5.txt" )))
+            md5done = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['BACKUPCOPYFOLDER'] + file + ".md5.txt" )))
           else:
-            sys.exit("not "+pars['BACKUPCOPYFOLDER'] + file + " or "+pars['BACKUPCOPYFOLDER'] + file + "md5.txt")
+            sys.exit("not "+pars['BACKUPCOPYFOLDER'] + file + " or "+pars['BACKUPCOPYFOLDER'] + file + ".md5.txt")
           nasdict = {'backupdone': backupdone, 'md5done': md5done}
           res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
           print res
