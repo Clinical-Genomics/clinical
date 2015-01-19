@@ -146,13 +146,13 @@ class dbconnect(object):
     key = self.cursor.fetchone()
     if key:
       print "Entry exists ", key
-      setvalue = ""
+      setvalues = ""
       for dictkey in insertdict:
-        setvalue += dictkey + "='" + insertdict[dictkey] + "', "
-      setvalue = " " + setvalue[:-2] + " "
-      print setvalue
-      uquery = (""" UPDATE """ + table + """ SET """ + setvalue + """ WHERE """ + indexkey['Column_name'] + 
-                         """ = '""" + key[indexkey['Column_name']] + """' """)
+        setvalues += dictkey + "='" + insertdict[dictkey] + "', "
+      setvalues = " " + setvalue[:-2] + " "
+      print setvalues
+      uquery = (' UPDATE {0} SET {1} WHERE {2} = \'{3}\' '.format(table, setvalues, indexkey['Column_name'], 
+                key[indexkey['Column_name']]))
       try:
         self.cursor.execute(uquery)
       except mysql.IntegrityError, e: 
@@ -179,7 +179,7 @@ class dbconnect(object):
       values = " (" + values[:-2] + ") " 
       print columns, values
       try:
-        self.cursor.execute(""" INSERT INTO """ + table + """  """ + columns + """ VALUES """ + values )
+        self.cursor.execute(' INSERT INTO {0} {1} VALUES {2} '.format(table, columns, values, ))
       except mysql.IntegrityError, e: 
         print "Error %d: %s" % (e.args[0],e.args[1])
         exit("DB error")
