@@ -89,6 +89,8 @@ class dbconnect(object):
 
   def __exit__(self, exc_type, exc_val, exc_tb):
     if exc_type:
+      if exc_type == '_mysql_exceptions.ProgrammingError':
+        "what"
       print '__exit__(%s, %s, %s)' % (exc_type, exc_val, exc_tb)
     self.cursor.close()
     self.cnx.close()
@@ -135,7 +137,6 @@ class dbconnect(object):
       return 'True'
     else:
       return (name + " "  + str(major) + "." + str(minor) + "." + str(patch))
-  
   
   def insertorupdate( self, table, column, entry, insertdict ):
     self.cursor.execute(""" show index from """ + table + """  """)
