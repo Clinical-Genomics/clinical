@@ -34,23 +34,19 @@ with create_tunnel(pars['TUNNELCMD']):
       print "Wrong db " + ver
       exit(0) 
 
-    if (os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt") and 
-        os.path.isfile(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")):
-      starttonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RunInfo.xml" )))
-      endtonas = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt" )))
-    else:
-      sys.exit("not "+pars['RUNFOLDER'] + runfolder + "/RTAComplete.txt "+pars['RUNFOLDER'] + runfolder + "/RunInfo.xml")
-
-    nas = socket.gethostname()
-    nasdir = pars['RUNFOLDER']
-    rundate = list(runfolder.split("_")[0])
-    rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
-
-    nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
-           'runname': runfolder, 'startdate': rundate}
-
-    res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
-    print res
-
+    for root, dirs, files in os.walk("/mydir"):
+      for file in files:
+        if file.endswith(".tar.gz"):
+          runname = file[:-7]
+          print runname
+          if (os.path.isfile(pars['BACKUPCOPYFOLDER'] + file) and 
+              os.path.isfile(pars['BACKUPCOPYFOLDER'] + file + ".md5.txt")):
+            backupdone = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['BACKUPCOPYFOLDER'] + file )))
+            md5done = str(datetime.datetime.fromtimestamp(os.path.getmtime(pars['BACKUPCOPYFOLDER'] + file + "md5.txt" )))
+          else:
+            sys.exit("not "+pars['BACKUPCOPYFOLDER'] + file + " or "+pars['BACKUPCOPYFOLDER'] + file + "md5.txt")
+          nasdict = {'backupdone': backupdone, 'md5done': md5done}
+          res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
+          print res
 
 exit(0)
