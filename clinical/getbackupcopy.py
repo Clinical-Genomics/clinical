@@ -18,7 +18,7 @@ else:
   configfile = 'None'
 pars = readconfig(configfile)
 
-if not os.path.isdir(pars['BACKUPCOPYFOLDER']):
+if not os.path.isdir():
   sys.exit("No directory " + pars['BACKUPCOPYFOLDER'])
 
 with create_tunnel(pars['TUNNELCMD']):
@@ -32,7 +32,7 @@ with create_tunnel(pars['TUNNELCMD']):
       print "Wrong db " + ver
       exit(0) 
 
-    for root, dirs, files in os.walk("/mydir"):
+    for root, dirs, files in os.walk(pars['BACKUPCOPYFOLDER']):
       for file in files:
         if file.endswith(".tar.gz"):
           runname = file[:-7]
