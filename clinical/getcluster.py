@@ -32,10 +32,21 @@ with create_tunnel(pars['TUNNELCMD']):
     else:
       print "Correct db"
       
-#    nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
-#           'runname': runfolder, 'startdate': rundate}
+    for root, dirs, files in os.walk(pars['CLUSTERBACKUP']):
+      for file in files:
+        if file.endswith(".tar.gz"):
+          runname = file[:-7]
+          print runname
+          if (os.path.isfile(pars['CLUSTERBACKUP'] + file) and 
+              os.path.isfile(pars['CLUSTERBACKUP'] + file + ".md5.txt")):
+            inbackdir = 1
+          else:
+            sys.exit("not "+pars['CLUSTERBACKUP'] + file + " or "+pars['CLUSTERBACKUP'] + file + ".md5.txt")
 
-#    res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
-#    print res
+          rundate = list(runname.split("_")[0])
+          rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
+          nasdict = {'inbackdir': inbackdir, 'runname': runname, 'startdate': rundate}
+          res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
+          print res
 
 exit(0)
