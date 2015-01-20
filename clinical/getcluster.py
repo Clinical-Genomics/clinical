@@ -32,8 +32,8 @@ with create_tunnel(pars['TUNNELCMD']):
     else:
       print "Correct db"
       
-    nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
-           'runname': runfolder, 'startdate': rundate}
+#    nasdict = {'starttonas': starttonas, 'endtonas': endtonas, 'nas': nas, 'nasdir': nasdir, 
+#           'runname': runfolder, 'startdate': rundate}
 
 #    res = dbc.insertorupdate( "backup", "runname", runfolder, nasdict )
 #    print res
