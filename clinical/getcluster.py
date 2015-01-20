@@ -39,7 +39,7 @@ with create_tunnel(pars['TUNNELCMD']):
           print runname
           if (os.path.isfile(pars['CLUSTERBACKUP'] + file) and 
               os.path.isfile(pars['CLUSTERBACKUP'] + file + ".md5.txt")):
-            inbackdir = 1
+            inbackdir = True
           else:
             sys.exit("not "+pars['CLUSTERBACKUP'] + file + " or "+pars['CLUSTERBACKUP'] + file + ".md5.txt")
 
