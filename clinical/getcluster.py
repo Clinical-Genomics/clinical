@@ -39,13 +39,13 @@ with create_tunnel(pars['TUNNELCMD']):
           print runname
           if (os.path.isfile(pars['CLUSTERBACKUP'] + file) and 
               os.path.isfile(pars['CLUSTERBACKUP'] + file + ".md5.txt")):
-            inbackdir = str(1)
+            inbackupdir = str(1)
           else:
             sys.exit("not "+pars['CLUSTERBACKUP'] + file + " or "+pars['CLUSTERBACKUP'] + file + ".md5.txt")
 
           rundate = list(runname.split("_")[0])
           rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
-          nasdict = {'inbackdir': inbackdir, 'runname': runname, 'startdate': rundate}
+          nasdict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
           res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
           print res
 
