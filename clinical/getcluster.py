@@ -60,12 +60,10 @@ with create_tunnel(pars['TUNNELCMD']):
                   os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file + ".md5.txt")):
                 tapeentry = dbc.getprimarykey( 'backuptape', 'tapedir', tapedir )
                 print tapedir, runname, str(tapeentry)
-              else:
-                sys.exit("not "+pars['CLUSTERBACKUP'] + file + " or "+pars['CLUSTERBACKUP'] + file + ".md5.txt")
 
               rundate = list(runname.split("_")[0])
               rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
-              tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
+              tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate, tapeentry}
 #            res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
               print tapedict
           
