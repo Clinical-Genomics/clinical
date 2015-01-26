@@ -216,5 +216,6 @@ class dbconnect(object):
       print "Entry exists ", key
       setvalues = ""
       return { indexkey['Column_name']: key }
-
+    else: 
+      return { indexkey['Column_name']: 0 }
   
