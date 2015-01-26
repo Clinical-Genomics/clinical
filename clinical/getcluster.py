@@ -45,27 +45,27 @@ with create_tunnel(pars['TUNNELCMD']):
 
           rundate = list(runname.split("_")[0])
           rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
-          nasdict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
-          res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
-          print res
+          clusterdict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
+#          res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
+          print clusterdict
     for root, dirs, fils in os.walk(pars['ONTAPEFOLDER']):
       for tapedir in dirs:
-        tapedict = {'tapedir':tapedir, nametext, tapedate}
         for rot, drs, files in os.walk(pars['ONTAPEFOLDER'] + tapedir):
           if file.endswith(".tar.gz"):
             runname = file[:-7]
             print runname
-            if (os.path.isfile(pars['CLUSTERBACKUP'] + file) and 
-                os.path.isfile(pars['CLUSTERBACKUP'] + file + ".md5.txt")):
-              inbackupdir = str(1)
+            if (os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file) and 
+                os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" +file + ".md5.txt")):
+              tapeentry = getprimarykey( 'backuptape', 'tapedir', tapedir )
+              print tapedir
             else:
               sys.exit("not "+pars['CLUSTERBACKUP'] + file + " or "+pars['CLUSTERBACKUP'] + file + ".md5.txt")
 
             rundate = list(runname.split("_")[0])
             rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
-            nasdict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
-            res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
-            print res
+            tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
+#            res = dbc.insertorupdate( "backup", "runname", runname, nasdict )
+            print tapedict
           
 
 exit(0)
