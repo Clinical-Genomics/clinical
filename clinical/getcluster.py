@@ -59,7 +59,7 @@ with create_tunnel(pars['TUNNELCMD']):
               if (os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file) and 
                   os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file + ".md5.txt")):
                 tapeentry = dbc.getprimarykey( 'backuptape', 'tapedir', tapedir )
-                print tapedir, runname
+                print tapedir, runname, str(tapeentry)
               else:
                 sys.exit("not "+pars['CLUSTERBACKUP'] + file + " or "+pars['CLUSTERBACKUP'] + file + ".md5.txt")
 
