@@ -50,12 +50,13 @@ with create_tunnel(pars['TUNNELCMD']):
           print clusterdict
     for root, dirs, fils in os.walk(pars['ONTAPEFOLDER']):
       for tapedir in dirs:
+        print tapedir
         for rot, drs, files in os.walk(pars['ONTAPEFOLDER'] + tapedir):
           if file.endswith(".tar.gz"):
             runname = file[:-7]
             print runname
             if (os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file) and 
-                os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" +file + ".md5.txt")):
+                os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file + ".md5.txt")):
               tapeentry = getprimarykey( 'backuptape', 'tapedir', tapedir )
               print tapedir
             else:
