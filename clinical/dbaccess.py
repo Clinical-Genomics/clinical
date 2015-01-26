@@ -195,16 +195,15 @@ class dbconnect(object):
       return self.cursor.lastrowid
 
   def getprimarykey( self, table, column, entry ):
-        """Opens an ssh tunnel as defined by the tunnel_cmd
+    """Opens an ssh tunnel as defined by the tunnel_cmd
 
         Args:
           tunnel_cmd (str): tunnel_cmd
           E.g. "ssh -fN -L 1231:localhost:2345 user@ssh.server.com"
-          
+      
         Returns:
           dict: { columnname: primarykey }
-        """
-
+    """
     self.cursor.execute(""" SHOW INDEX FROM """ + table + """  """)
     indexkey = self.cursor.fetchone()
     if not indexkey:
