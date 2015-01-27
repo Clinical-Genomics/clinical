@@ -231,12 +231,31 @@ class dbconnect(object):
     indexkey = self.cursor.fetchone()
     if not indexkey:
       return "Could not get primary key"
-    self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
-    key = self.cursor.fetchone()
+      return { indexkey['Column_name']: 0 }
+    columns = ""
+    values = ""
+    for dictkey in entry:
+      columns += dictkey + ", "
+      values += "'" + insertdict[dictkey] + "', "
+    columns = " (" + columns[:-2] + ") "
+    values = " (" + values[:-2] + ") " 
+    print columns, values
+    try:
+      self.cursor.execute(' INSERT INTO {0} {1} VALUES {2} '.format(indexkey['Column_name'], columns, values, ))
+    except mysql.IntegrityError, e: 
+      print "Error %d: %s" % (e.args[0],e.args[1])
+      exit("DB error")
+    except mysql.Error, e:
+      print "Error %d: %s" % (e.args[0],e.args[1])
+      exit("Syntax error")
+    except mysql.Warning, e:
+      exit("MySQL warning")
+    self.cnx.commit()
+    key = self.cursor.lastrowid
     if key:
-      print "Entry exists ", key
-      setvalues = ""
+      print "Entry added ", key
       return { indexkey['Column_name']: key }
     else: 
+      print "Entry failed "
       return { indexkey['Column_name']: 0 }
   
