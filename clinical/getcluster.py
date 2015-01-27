@@ -78,6 +78,8 @@ with create_tunnel(pars['TUNNELCMD']):
                           'backuptape_id': tapeentry['backuptape_id']}
               for tapekey in tapeentry:
                 tapedict[tapekey] = tapeentry[tapekey]
+              if tapeentry[tapekey]:
+                tapedict['inbackupdir'] = str(0)
               print tapedict
 #              print tapeentry
 #              print tapedict['backuptape_id']
