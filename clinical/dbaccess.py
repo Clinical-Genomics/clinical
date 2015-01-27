@@ -204,7 +204,7 @@ class dbconnect(object):
         Returns:
           dict: { columnname: primarykey }
     """
-    self.cursor.execute(""" SHOW INDEX FROM """ + table + """  """)
+    self.cursor.execute(""" SHOW INDEX FROM """ + table + """ WHERE Key_name = 'PRIMARY' """)
     indexkey = self.cursor.fetchone()
     if not indexkey:
       print "Could not get primary key"
