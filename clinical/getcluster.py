@@ -46,7 +46,7 @@ with create_tunnel(pars['TUNNELCMD']):
           rundate = list(runname.split("_")[0])
           rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
           clusterdict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
-#          print clusterdict
+          print clusterdict
     for root, dirs, fils in os.walk(pars['ONTAPEFOLDER']):
       for tapedir in dirs:
         for rot, drs, files in os.walk(pars['ONTAPEFOLDER'] + tapedir):
