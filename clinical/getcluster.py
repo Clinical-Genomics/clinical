@@ -76,7 +76,7 @@ with create_tunnel(pars['TUNNELCMD']):
                   tapeentry = dbc.sqlinsert('backuptape', tapeadd)
 
               runname = file[:-7]
-              print runname
+#              print runname
               rundate = list(runname.split("_")[0])
               rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
               tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
