@@ -239,7 +239,7 @@ class dbconnect(object):
       values += "'" + insertdict[dictkey] + "', "
     columns = " (" + columns[:-2] + ") "
     values = " (" + values[:-2] + ") " 
-    print columns, values
+#    print columns, values
     try:
       self.cursor.execute(' INSERT INTO {0} {1} VALUES {2} '.format(indexkey['Column_name'], columns, values, ))
     except mysql.IntegrityError, e: 
