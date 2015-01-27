@@ -53,7 +53,7 @@ with create_tunnel(pars['TUNNELCMD']):
         print tapedir
         for rot, drs, files in os.walk(pars['ONTAPEFOLDER'] + tapedir):
           textcontent = ""
-          tapedate = ""
+          tapedate = datetime.datetime.fromtimestamp(1009302765)
           for file in files:
             if file.endswith(".txt"):
               with open (pars['ONTAPEFOLDER'] + tapedir + "/" + file, "r") as textfile:
