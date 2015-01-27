@@ -73,7 +73,7 @@ with create_tunnel(pars['TUNNELCMD']):
                   tapeadd['tapedir'] = tapedir
                   tapeadd['nametext'] = textcontent
                   tapeadd['tapedate'] = tapedate
-                print tapeadd
+                  tapeentry = dbc.sqlinsert('backuptape', tapeadd)
 
               runname = file[:-7]
               print runname
