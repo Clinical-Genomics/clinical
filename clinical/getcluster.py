@@ -61,7 +61,7 @@ with create_tunnel(pars['TUNNELCMD']):
                 curdate = datetime.datetime.fromtimestamp(os.path.getmtime(pars['ONTAPEFOLDER'] + tapedir + "/" + file))
                 if curdate > tapedate:
                   tapedate = curdate
-          print curdate, textcontent
+          print 'DATE'+curdate+"\n", textcontent
           for file in files:
             if file.endswith(".tar.gz"):
               if (os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file) and 
