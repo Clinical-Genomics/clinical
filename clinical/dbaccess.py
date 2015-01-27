@@ -174,7 +174,7 @@ class dbconnect(object):
       values = ""
       for dictkey in insertdict:
         columns += dictkey + ", "
-        values += "'" + insertdict[dictkey] + "', "
+        values += "'" + str(insertdict[dictkey]) + "', "
       columns = " (" + columns[:-2] + ") "
       values = " (" + values[:-2] + ") " 
       print columns, values
