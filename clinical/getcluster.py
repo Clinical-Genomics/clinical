@@ -56,7 +56,7 @@ with create_tunnel(pars['TUNNELCMD']):
           for file in files:
             if file.endswith(".txt"):
               with open (file, "r") as textfile:
-              textcontent += textfile.read()
+                textcontent += textfile.read()
           print textcontent
           for file in files:
             if file.endswith(".tar.gz"):
