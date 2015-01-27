@@ -212,7 +212,7 @@ class dbconnect(object):
     keys = self.cursor.fetchall()
     print str(len(keys))
     if len(keys) == 1:
-      print "Entry exists ", key
+      print "Entry exists ", keys[0]
       return { indexkey['Column_name']: keys[0] }
     else: 
       print "Could not get single entry key"
