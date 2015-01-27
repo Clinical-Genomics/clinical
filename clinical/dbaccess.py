@@ -241,7 +241,7 @@ class dbconnect(object):
     values = " (" + values[:-2] + ") " 
 #    print columns, values
     try:
-      self.cursor.execute(' INSERT INTO {0} {1} VALUES {2} '.format(indexkey['Column_name'], columns, values, ))
+      self.cursor.execute(""" INSERT INTO {0} {1} VALUES {2} """.format(indexkey['Column_name'], columns, values, ))
     except mysql.IntegrityError, e: 
       print "Error %d: %s" % (e.args[0],e.args[1])
       exit("DB error")
