@@ -76,7 +76,7 @@ with create_tunnel(pars['TUNNELCMD']):
               rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
               tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
               for tapekey in tapeentry:
-                tapedict[tapekey] = int(tapeentry[tapekey])
+                tapedict[tapekey] = tapeentry[tapekey]
               print tapedict
           
 
