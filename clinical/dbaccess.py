@@ -205,18 +205,18 @@ class dbconnect(object):
           dict: { columnname: primarykey }
     """
     self.cursor.execute(""" SHOW INDEX FROM """ + table + """  """)
-    indexkeys = self.cursor.fetchall()
-    print str(len(indexkeys))
+    indexkey = self.cursor.fetchone()
     indexkey = indexkeys[0]
     if not indexkey:
-      return "Could not get primary key"
+      print "Could not get primary key"
     self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
-    key = self.cursor.fetchone()
-    if key:
+    keys = self.cursor.fetchall()
+    print str(len(keys))
+    if len(keys) == 1:
       print "Entry exists ", key
-      setvalues = ""
-      return { indexkey['Column_name']: key }
+      return { indexkey['Column_name']: keys[0] }
     else: 
+      print "Could not get single entry key"
       return { indexkey['Column_name']: 0 }
   
   def sqlinsert( self, table, entry ):
