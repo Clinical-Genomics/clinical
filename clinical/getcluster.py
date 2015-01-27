@@ -47,6 +47,8 @@ with create_tunnel(pars['TUNNELCMD']):
           rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
           clusterdict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
           print clusterdict
+          dbc.insertorupdate('backup', 'runname', runname, clustertdict )
+          
     for root, dirs, fils in os.walk(pars['ONTAPEFOLDER']):
       for tapedir in dirs:
         for rot, drs, files in os.walk(pars['ONTAPEFOLDER'] + tapedir):
@@ -83,5 +85,5 @@ with create_tunnel(pars['TUNNELCMD']):
               print tapedict
 #              print tapeentry
 #              print tapedict['backuptape_id']
-
+              dbc.insertorupdate('backup', 'runname', runname, tapedict )
 exit(0)
