@@ -61,14 +61,12 @@ with create_tunnel(pars['TUNNELCMD']):
                 curdate = datetime.datetime.fromtimestamp(os.path.getmtime(pars['ONTAPEFOLDER'] + tapedir + "/" + file))
                 if curdate > tapedate:
                   tapedate = curdate
-          print 'DATE'+str(curdate)+"\n", textcontent
           for file in files:
             if file.endswith(".tar.gz"):
               if (os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file) and 
                   os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file + ".md5.txt")):
                 tapeentry = dbc.getprimarykey( 'backuptape', 'tapedir', tapedir )
                 if tapeentry['backuptape_id'] == 0:
-#                  print tapedir, runname, str(tapeentry)
                   tapeadd = {}
                   tapeadd['tapedir'] = tapedir
                   tapeadd['nametext'] = textcontent
@@ -76,7 +74,6 @@ with create_tunnel(pars['TUNNELCMD']):
                   tapeentry = dbc.sqlinsert('backuptape', tapeadd)
 
               runname = file[:-7]
-#              print runname
               rundate = list(runname.split("_")[0])
               rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
               tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
