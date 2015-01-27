@@ -210,7 +210,6 @@ class dbconnect(object):
       print "Could not get primary key"
     self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
     keys = self.cursor.fetchall()
-    print str(len(keys))
     if len(keys) == 1:
 #      print "Entry exists ", keys[0]
       return { indexkey['Column_name']: keys[0] }
@@ -250,6 +249,6 @@ class dbconnect(object):
 #      print "Entry added ", key
       return { indexkey['Column_name']: key }
     else: 
-#      print "Entry failed "
+      print "Entry failed "
       return { indexkey['Column_name']: 0 }
   
