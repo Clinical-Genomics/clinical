@@ -69,7 +69,7 @@ with create_tunnel(pars['TUNNELCMD']):
                 tapeentry = dbc.getprimarykey( 'backuptape', 'tapedir', tapedir )
                 if tapeentry['backuptape_id'] == 0:
 #                  print tapedir, runname, str(tapeentry)
-                  tapeadd = []
+                  tapeadd = {}
                   tapeadd['tapedir'] = tapedir
                   tapeadd['nametext'] = textcontent
                   tapeadd['tapedate'] = tapedate
