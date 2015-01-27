@@ -232,14 +232,6 @@ class dbconnect(object):
     if not indexkey:
       return "Could not get primary key"
       return { indexkey['Column_name']: 0 }
-    columns = ""
-    values = ""
-    for dictkey in entry:
-      columns += dictkey + """, """
-      values += """'""" + str(entry[dictkey]) + """', """
-    columns = """ (""" + columns[:-2] + """) """
-    values = """ (""" + values[:-2] + """) """ 
-#    print columns, values
     query = (""" INSERT INTO `%s` (`%s`) VALUES (%s) """ % (table, '`,`'.join(entry.keys()),
                  ','.join([ '%s' for x in xrange(len(entry)) ]) ))
     try:
