@@ -235,10 +235,10 @@ class dbconnect(object):
     columns = ""
     values = ""
     for dictkey in entry:
-      columns += dictkey + ", "
-      values += "'" + str(entry[dictkey]) + "', "
-    columns = " (" + columns[:-2] + ") "
-    values = " (" + values[:-2] + ") " 
+      columns += dictkey + """, """
+      values += """'""" + str(entry[dictkey]) + """', """
+    columns = """ (""" + columns[:-2] + """) """
+    values = """ (""" + values[:-2] + """) """ 
 #    print columns, values
     try:
       self.cursor.execute(""" INSERT INTO {0} {1} VALUES {2} """.format(indexkey['Column_name'], columns, values, ))
