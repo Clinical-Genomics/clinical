@@ -55,7 +55,7 @@ with create_tunnel(pars['TUNNELCMD']):
           textcontent = ""
           for file in files:
             if file.endswith(".txt"):
-              with open (file, "r") as textfile:
+              with open (pars['ONTAPEFOLDER'] + tapedir + "/" + file, "r") as textfile:
                 textcontent += textfile.read()
           print textcontent
           for file in files:
