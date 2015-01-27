@@ -74,10 +74,11 @@ with create_tunnel(pars['TUNNELCMD']):
               runname = file[:-7]
               rundate = list(runname.split("_")[0])
               rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
-              tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate}
+              tapedict = {'inbackupdir': inbackupdir, 'runname': runname, 'startdate': rundate, 
+                          'backuptape_id': tapeentry['backuptape_id']}
               for tapekey in tapeentry:
                 tapedict[tapekey] = tapeentry[tapekey]
               print tapedict
-              print tapedict['backuptape_id']
+#              print tapedict['backuptape_id']
 
 exit(0)
