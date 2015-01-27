@@ -148,7 +148,7 @@ class dbconnect(object):
       print "Entry exists ", key
       setvalues = ""
       for dictkey in insertdict:
-        setvalues += dictkey + "='" + insertdict[dictkey] + "', "
+        setvalues += dictkey + "='" + str(insertdict[dictkey]) + "', "
       setvalues = " " + setvalues[:-2] + " "
       print setvalues
       uquery = (' UPDATE {0} SET {1} WHERE {2} = \'{3}\' '.format(table, setvalues, indexkey['Column_name'], 
