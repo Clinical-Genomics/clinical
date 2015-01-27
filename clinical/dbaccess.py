@@ -209,13 +209,13 @@ class dbconnect(object):
     if not indexkey:
       print "Could not get primary key"
     self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
-    keys = self.cursor.fetchall()
-    if len(keys) == 1:
+    replys = self.cursor.fetchall()
+    if len(replys) == 1:
 #      print "Entry exists ", keys[0]
-      return { indexkey['Column_name']: keys[0] }
+      return { replys.keys()[0]: replys.values()[0] }
     else: 
       print "Could not get single entry key"
-      return { indexkey['Column_name']: 0 }
+      return { replys.keys()[0]: 0 }
   
   def sqlinsert( self, table, entry ):
     """ Inserts entry dictionary into table
