@@ -236,7 +236,7 @@ class dbconnect(object):
     values = ""
     for dictkey in entry:
       columns += dictkey + ", "
-      values += "'" + entry[dictkey] + "', "
+      values += "'" + str(entry[dictkey]) + "', "
     columns = " (" + columns[:-2] + ") "
     values = " (" + values[:-2] + ") " 
 #    print columns, values
