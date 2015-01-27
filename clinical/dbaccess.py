@@ -212,7 +212,7 @@ class dbconnect(object):
     replys = self.cursor.fetchall()
     if len(replys) == 1:
 #      print "Entry exists ", keys[0]
-      return { replys.keys()[0]: replys.values()[0] }
+      return { replys.keys()[0]: replys[reply.keys()[0]] }
     else: 
       print "Could not get single entry key"
       return { replys.keys()[0]: 0 }
