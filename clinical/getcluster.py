@@ -53,10 +53,12 @@ with create_tunnel(pars['TUNNELCMD']):
         print tapedir
         for rot, drs, files in os.walk(pars['ONTAPEFOLDER'] + tapedir):
           textcontent = ""
+          tapedate = ""
           for file in files:
             if file.endswith(".txt"):
               with open (pars['ONTAPEFOLDER'] + tapedir + "/" + file, "r") as textfile:
                 textcontent += textfile.read()
+                print os.path.getmtime(pars['ONTAPEFOLDER'] + tapedir + "/" + file)
           print textcontent
           for file in files:
             if file.endswith(".tar.gz"):
