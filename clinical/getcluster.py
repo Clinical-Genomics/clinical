@@ -79,6 +79,7 @@ with create_tunnel(pars['TUNNELCMD']):
               for tapekey in tapeentry:
                 tapedict[tapekey] = tapeentry[tapekey]
               print tapedict
+              print tapeentry
 #              print tapedict['backuptape_id']
 
 exit(0)
