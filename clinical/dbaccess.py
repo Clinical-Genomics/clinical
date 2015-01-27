@@ -206,7 +206,6 @@ class dbconnect(object):
     """
     self.cursor.execute(""" SHOW INDEX FROM """ + table + """  """)
     indexkey = self.cursor.fetchone()
-    indexkey = indexkeys[0]
     if not indexkey:
       print "Could not get primary key"
     self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
