@@ -58,7 +58,7 @@ with create_tunnel(pars['TUNNELCMD']):
             if file.endswith(".txt"):
               with open (pars['ONTAPEFOLDER'] + tapedir + "/" + file, "r") as textfile:
                 textcontent += textfile.read()
-                print os.path.getmtime(pars['ONTAPEFOLDER'] + tapedir + "/" + file)
+                print datetime.datetime.fromtimestamp(os.path.getmtime(pars['ONTAPEFOLDER'] + tapedir + "/" + file))
           print textcontent
           for file in files:
             if file.endswith(".tar.gz"):
