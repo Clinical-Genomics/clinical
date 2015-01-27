@@ -68,8 +68,11 @@ with create_tunnel(pars['TUNNELCMD']):
                   os.path.isfile(pars['ONTAPEFOLDER'] + tapedir + "/" + file + ".md5.txt")):
                 tapeentry = dbc.getprimarykey( 'backuptape', 'tapedir', tapedir )
                 if tapeentry['backuptape_id'] == 0:
-                  print tapedir, runname, str(tapeentry)
-                  
+#                  print tapedir, runname, str(tapeentry)
+                  tapeadd['tapedir'] = tapedir
+                  tapeadd['nametext'] = textcontent
+                  tapeadd['tapedate'] = tapedate
+                print tapeadd
 
               runname = file[:-7]
               print runname
