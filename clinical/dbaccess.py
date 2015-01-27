@@ -195,11 +195,35 @@ class dbconnect(object):
       return self.cursor.lastrowid
 
   def getprimarykey( self, table, column, entry ):
-    """Opens an ssh tunnel as defined by the tunnel_cmd
+    """ Extract primary key from unique table entry
 
         Args:
-          tunnel_cmd (str): tunnel_cmd
-          E.g. "ssh -fN -L 1231:localhost:2345 user@ssh.server.com"
+          table name, column name, entry
+          E.g. 'backup', 'starttonas', '2014-12-10 15:15:09'
+      
+        Returns:
+          dict: { columnname: primarykey }
+    """
+    self.cursor.execute(""" SHOW INDEX FROM """ + table + """  """)
+    indexkeys = self.cursor.fetchall()
+    print str(len(indexkeys))
+    indexkey = indexkeys[0]
+    if not indexkey:
+      return "Could not get primary key"
+    self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
+    key = self.cursor.fetchone()
+    if key:
+      print "Entry exists ", key
+      setvalues = ""
+      return { indexkey['Column_name']: key }
+    else: 
+      return { indexkey['Column_name']: 0 }
+  
+  def sqlinsert( self, table, entry ):
+    """ Inserts entry dictionary into table
+
+        Args:
+          table (str), entry (dictionary coresponding to table structure)
       
         Returns:
           dict: { columnname: primarykey }
@@ -208,7 +232,6 @@ class dbconnect(object):
     indexkey = self.cursor.fetchone()
     if not indexkey:
       return "Could not get primary key"
-  
     self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
     key = self.cursor.fetchone()
     if key:
