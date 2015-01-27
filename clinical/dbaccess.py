@@ -240,8 +240,10 @@ class dbconnect(object):
     columns = """ (""" + columns[:-2] + """) """
     values = """ (""" + values[:-2] + """) """ 
 #    print columns, values
+    query = (""" INSERT INTO `%s` (`%s`) VALUES (%s) """ % (table, '`,`'.join(entry.keys()),
+                 ','.join([ '%s' for x in xrange(len(entry)) ]) ))
     try:
-      self.cursor.execute(""" INSERT INTO {0} {1} VALUES {2} """.format(indexkey['Column_name'], columns, values, ))
+      self.cursor.execute(query, entry.values(), )
     except mysql.IntegrityError, e: 
       print "Error %d: %s" % (e.args[0],e.args[1])
       exit("DB error")
