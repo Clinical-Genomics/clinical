@@ -212,7 +212,7 @@ class dbconnect(object):
     keys = self.cursor.fetchall()
     print str(len(keys))
     if len(keys) == 1:
-      print "Entry exists ", keys[0]
+#      print "Entry exists ", keys[0]
       return { indexkey['Column_name']: keys[0] }
     else: 
       print "Could not get single entry key"
@@ -230,7 +230,7 @@ class dbconnect(object):
     self.cursor.execute(""" SHOW INDEX FROM """ + table + """  """)
     indexkey = self.cursor.fetchone()
     if not indexkey:
-      return "Could not get primary key"
+      print "Could not get primary key"
       return { indexkey['Column_name']: 0 }
     query = (""" INSERT INTO `%s` (`%s`) VALUES (%s) """ % (table, '`,`'.join(entry.keys()),
                  ','.join([ '%s' for x in xrange(len(entry)) ]) ))
@@ -247,9 +247,9 @@ class dbconnect(object):
     self.cnx.commit()
     key = self.cursor.lastrowid
     if key:
-      print "Entry added ", key
+#      print "Entry added ", key
       return { indexkey['Column_name']: key }
     else: 
-      print "Entry failed "
+#      print "Entry failed "
       return { indexkey['Column_name']: 0 }
   
