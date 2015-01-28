@@ -211,12 +211,10 @@ class dbconnect(object):
     self.cursor.execute(' SELECT {0} FROM {1} WHERE {2} = \'{3}\' '.format(indexkey['Column_name'], table, column, entry, ))
     replys = self.cursor.fetchall()
     if len(replys) == 1:
-#      print "Entry exists ", keys[0]
-#      for key in replys:
       return replys[0]
     else: 
       print "Could not get single entry key"
-      return { replys.keys()[0]: 0 }
+      return { indexkey['Column_name']: 0 }
   
   def sqlinsert( self, table, entry ):
     """ Inserts entry dictionary into table
