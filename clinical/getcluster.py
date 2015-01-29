@@ -82,8 +82,5 @@ with create_tunnel(pars['TUNNELCMD']):
                 tapedict[tapekey] = tapeentry[tapekey]
               if tapeentry[tapekey]:
                 tapedict['inbackupdir'] = str(0)
-              print tapedict
-#              print tapeentry
-#              print tapedict['backuptape_id']
               dbc.insertorupdate('backup', 'runname', runname, tapedict )
 exit(0)
