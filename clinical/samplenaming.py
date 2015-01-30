@@ -12,6 +12,7 @@ from dbaccess import *
 import subprocess
 import psutil
 
+textfile = sys.argv[1]
 
 if (len(sys.argv)>2):
   configfile = sys.argv[2]
@@ -30,7 +31,12 @@ with create_tunnel(pars['TUNNELCMD']):
       print "Wrong db " + ver
       exit(0) 
 
-
+    names = {}
+    with open(textfile, "r") as namfile:
+      for line in namfile:
+        names = line.split(" ")
+        print = names[0], names[1]
+      
     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
 #    rundate = list(runfolder.split("_")[0])
