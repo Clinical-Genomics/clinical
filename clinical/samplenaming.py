@@ -34,8 +34,8 @@ with create_tunnel(pars['TUNNELCMD']):
     names = {}
     with open(textfile, "r") as namfile:
       for line in namfile:
-        names = line.rstrip().split("\t")
-        print names[0], names[1]
+        name = line.rstrip().split("\t")
+        print names[names[0]] = names[1]
       
     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
