@@ -39,7 +39,7 @@ with create_tunnel(pars['TUNNELCMD']):
         
         query = (" SELECT sample_id, samplename FROM sample WHERE samplename = %s ", (name[0], ))
         reply = dbc.generalquery(query)
-        print str(reply)
+        print str(reply(0))
       
     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
