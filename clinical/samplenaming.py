@@ -35,7 +35,11 @@ with create_tunnel(pars['TUNNELCMD']):
     with open(textfile, "r") as namfile:
       for line in namfile:
         name = line.rstrip().split("\t")
-        print names[names[0]] = names[1]
+        names[name[0]] = name[1]
+        
+        query = (" SELECT sample_id, samplename FROM sample WHERE samplename = %s " % name[0])
+        reply = dbc.generalquery(query)
+        print reply[sample_id], reply[samplename]
       
     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
