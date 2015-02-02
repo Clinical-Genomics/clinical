@@ -50,7 +50,7 @@ with create_tunnel(pars['TUNNELCMD']):
 #          print "NOT FOUND: ", str(names) 
  
       
-    nas = socket.gethostname()
+     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
 #    rundate = list(runfolder.split("_")[0])
 #    rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
