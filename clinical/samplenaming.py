@@ -37,11 +37,11 @@ with create_tunnel(pars['TUNNELCMD']):
         name = line.rstrip().split("\t")
         names[name[0]] = name[1]
         
-        query = " SELECT sample_id, samplename FROM sample WHERE samplename LIKE '"+name[0]+"%' "
+        query = " SELECT sample_id, samplename FROM sample WHERE samplename LIKE '"+name[0]+"_%' "
         print query
         reply = dbc.generalquery(query)
         for rep in reply:
-          print str(rep)
+          print name[1], str(rep)
       
     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
