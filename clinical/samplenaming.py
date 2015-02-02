@@ -31,11 +31,12 @@ with create_tunnel(pars['TUNNELCMD']):
       print "Wrong db " + ver
       exit(0) 
 
-    names = {}
     with open(textfile, "r") as namfile:
       for line in namfile:
+        names = {}
         name = line.rstrip().split("\t")
-        names[name[0]] = name[1]
+        names['customerid'] = name[0]
+        names['limsid'] = name[1]
         
         query = " SELECT sample_id, samplename, barcode FROM sample WHERE samplename LIKE '"+name[0]+"\_%' "
         print query
