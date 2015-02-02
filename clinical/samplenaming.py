@@ -47,10 +47,10 @@ with create_tunnel(pars['TUNNELCMD']):
 #            print rep['samplename'], name[0], name[1], str(names) #str(rep)
             dbc.insertorupdate( 'sample', 'samplename', rep['samplename'], names )
         else:
-#          print "NOT FOUND: ", str(names) 
+          print "NOT FOUND: ", str(names) 
  
       
-     nas = socket.gethostname()
+    nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
 #    rundate = list(runfolder.split("_")[0])
 #    rundate = "20"+rundate[0]+rundate[1]+"-"+rundate[2]+rundate[3]+"-"+rundate[4]+rundate[5]
