@@ -37,7 +37,7 @@ with create_tunnel(pars['TUNNELCMD']):
         name = line.rstrip().split("\t")
         names[name[0]] = name[1]
         
-        query = " SELECT sample_id, samplename FROM sample WHERE samplename = '"+name[1]+"' "
+        query = " SELECT sample_id, samplename FROM sample WHERE samplename LIKE '"+name[1]+"%' "
         print query
         reply = dbc.generalquery(query)
         for rep in reply:
