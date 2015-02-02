@@ -38,12 +38,13 @@ with create_tunnel(pars['TUNNELCMD']):
         names['customerid'] = name[1]
         names['limsid'] = name[0]
         
-        query = " SELECT sample_id, samplename, barcode FROM sample WHERE samplename LIKE '"+name[0]+"\_%' "
+        query = " SELECT sample_id, samplename, barcode FROM sample WHERE samplename LIKE '"+name[0]+"\_%' AND limsid is NULL "
         print query
         reply = dbc.generalquery(query)
         if len(reply) == 1:
 #        for rep in reply:
           print name[0], name[1], str(names) #str(rep)
+          
         else:
           print "NOT FOUND: ", name[0], name[1], str(names) 
  
