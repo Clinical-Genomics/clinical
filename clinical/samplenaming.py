@@ -35,16 +35,17 @@ with create_tunnel(pars['TUNNELCMD']):
       for line in namfile:
         names = {}
         name = line.rstrip().split("\t")
-        names['customerid'] = name[1]
-        names['limsid'] = name[0]
+        if len(name) > 3:
+          names['customerid'] = name[1]
+          names['limsid'] = name[0]
         
         query = " SELECT sample_id, samplename, barcode FROM sample WHERE samplename LIKE '"+name[0]+"\_%' AND limsid is NULL "
         print query
         reply = dbc.generalquery(query)
         if len(reply) == 1:
           for rep in reply:
-#            print rep['samplename'], name[0], name[1], str(names) #str(rep)
-            dbc.insertorupdate( 'sample', 'samplename', rep['samplename'], names )
+            print rep['samplename'], name[0], name[1], str(names) #str(rep)
+#            dbc.insertorupdate( 'sample', 'samplename', rep['samplename'], names )
         else:
           print "NOT FOUND: ", name[0], name[1], str(names) 
  
