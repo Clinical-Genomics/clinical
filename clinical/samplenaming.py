@@ -42,7 +42,7 @@ with create_tunnel(pars['TUNNELCMD']):
         reply = dbc.generalquery(query)
         if len(reply) == 1:
 #        for rep in reply:
-#          print name[1], str(rep)
+          print name[1], str(rep)
 
  
       
