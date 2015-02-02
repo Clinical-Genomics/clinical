@@ -35,7 +35,7 @@ with create_tunnel(pars['TUNNELCMD']):
       for line in namfile:
         names = {}
         name = line.rstrip().split("\t")
-        if len(name) > 3:
+        if len(name) > 1:
           names['customerid'] = name[1]
           names['limsid'] = name[0]
         
