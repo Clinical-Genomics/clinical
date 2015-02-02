@@ -42,9 +42,9 @@ with create_tunnel(pars['TUNNELCMD']):
         print query
         reply = dbc.generalquery(query)
         if len(reply) == 1:
-#        for rep in reply:
-#          print name[0], name[1], str(names) #str(rep)
-          dbc.insertorupdate( 'sample', 'samplename', name[0], names )
+        for rep in reply:
+          print name[0], name[1], str(names) #str(rep)
+#          dbc.insertorupdate( 'sample', 'samplename', name[0], names )
         else:
           print "NOT FOUND: ", name[0], name[1], str(names) 
  
