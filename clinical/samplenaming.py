@@ -35,8 +35,8 @@ with create_tunnel(pars['TUNNELCMD']):
       for line in namfile:
         names = {}
         name = line.rstrip().split("\t")
-        names['customerid'] = name[0]
-        names['limsid'] = name[1]
+        names['customerid'] = name[1]
+        names['limsid'] = name[0]
         
         query = " SELECT sample_id, samplename, barcode FROM sample WHERE samplename LIKE '"+name[0]+"\_%' "
         print query
