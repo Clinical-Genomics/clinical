@@ -44,7 +44,8 @@ with create_tunnel(pars['TUNNELCMD']):
         if len(reply) == 1:
 #        for rep in reply:
           print name[0], name[1], str(names) #str(rep)
-
+        else:
+          print "NOT FOUND: ", name[0], name[1], str(names) 
  
       
     nas = socket.gethostname()
