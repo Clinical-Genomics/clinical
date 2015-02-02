@@ -47,7 +47,7 @@ with create_tunnel(pars['TUNNELCMD']):
             print rep['samplename'], name[0], name[1], str(names) #str(rep)
 #            dbc.insertorupdate( 'sample', 'samplename', rep['samplename'], names )
         else:
-          print "NOT FOUND: ", name[0], name[1], str(names) 
+          print "NOT FOUND: ", str(names) 
  
       
     nas = socket.gethostname()
