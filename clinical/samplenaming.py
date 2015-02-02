@@ -38,11 +38,11 @@ with create_tunnel(pars['TUNNELCMD']):
         names[name[0]] = name[1]
         
         query = " SELECT sample_id, samplename, barcode FROM sample WHERE samplename LIKE '"+name[0]+"\_%' "
-#        print query
+        print query
         reply = dbc.generalquery(query)
-        if len(reply) > 1:
-          for rep in reply:
-            print name[1], str(rep)
+#        if len(reply) > 1:
+        for rep in reply:
+          print name[1], str(rep)
       
     nas = socket.gethostname()
 #    nasdir = pars['RUNFOLDER']
