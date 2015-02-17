@@ -8,7 +8,7 @@ setup(
   author='Rikard Erlandsson',
   author_email='rikard.erlandson@scilifelab.se',
   license='MIT',
-  url='http://github.com/storborg/funniest',
+  url='http://github.com/Clinical-Genomics/clinical',
   packages=find_packages(),
   include_package_data=True,
   zip_safe=False,
